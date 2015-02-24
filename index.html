@@ -12,6 +12,7 @@
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- Bootstrap core CSS -->
+        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/colorbrewer.css">
@@ -29,71 +30,64 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <!-- Wrap all page content here -->
-        <div id="wrap">
-            <!-- Begin page content -->
-
-
-            <div class="container">
-                <!-- row of columns -->
-                <div class="row" id="banner">
-                    <h1>Populäraste bäbisnamnen</h1>
+        <!-- row of columns -->
+        <div class="row" id="banner">
+            <h1>Populäraste bäbisnamnen år 2004</h1>
+        </div>
+        <div class="row">
+            <div id="control-panel">
+                <div class="row gender-button-container">
+                    <button class="gender-button">
+                        Kille
+                    </button>
+                    <button class="gender-button">
+                        Tjej
+                    </button>
                 </div>
-                <div class="row">
-                    <div class="col-xs-3" id="control-panel">
-                        <div class="row">
-                            <button class="gender-button">Kille
-                            </button>
-                            <button class="gender-button">Tjej
-                            </button>
-                        </div>
 
-                         <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Utför!</button>
-                            </span>
-                        </div><!-- /input-group -->
+                 <div class="col-xs-12 input-group">
+                <input type="text" class="form-control" placeholder="Valfri...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Utför!</button>
+                    </span>
+                </div><!-- /input-group -->
 
-                        <div class="row">
-                            <button class="search-filter-button">Populäraste
-                            </button>
-                            <button class="search-filter-button">Liknande
-                            </button>
-                        </div>
-
-                        <div class="row">
-                            <h2>Top 10</h2>
-                            <p>Ett namn</p>
-                        </div>
-
-                        <!-- <div id="sp" style="height: 45vh;">
-                        </div> -->
-                    </div>
-
-                    <!-- ALL THE GRAPHS -->
-                    <div class="col-xs-9" id="graph-container">
-                        <div class="row">
-                            <button class="gender-button">2004
-                            </button>
-                            <button class="gender-button">2005
-                            </button>
-                        </div>
-
-                        <div id="stream" style="height: 45vh;">
-                        </div>
-
-                        <div class="row">
-                            <h2>Antal födda inom tidsperiod<h2>
-
-                            <div id="bar" style="height: 45vh;">
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-xs-12">
+                    <button class="search-filter-button">Populäraste
+                    </button>
+                    <button class="search-filter-button">Liknande
+                    </button>
                 </div>
+
+                <div class="col-xs-12">
+                    <h2>Top 10</h2>
+                    <h3>2004</h3>
+                    <p>Ett namn</p>
+                </div>
+
+                <!-- <div id="sp" style="height: 45vh;">
+                </div> -->
             </div>
 
-        </div>
+            <!-- ALL THE GRAPHS -->
+            <div id="graph-container">
+            
+                    <button class="year-button">2004
+                    </button>
+                    <button class="year-button">2005
+                    </button>
+               
+
+                <div id="stream" style="height: 45vh;">
+                </div>
+                <h2>Antal födda inom tidsperiod<h2>
+
+                <div id="bar" style="height: 45vh;">
+                </div>
+             
+            </div>
+        </div>           
+
 
         <div id="footer">
             <div class="container">
