@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="css/pc.css">
         <link rel="stylesheet" href="css/sp.css">
         <link rel="stylesheet" href="css/map.css">
+        <link rel="stylesheet" href="css/extrastyling.css">
 
     </head>
     <body>
@@ -30,46 +31,63 @@
 
         <!-- Wrap all page content here -->
         <div id="wrap">
-
-            <!-- Fixed navbar -->
-            <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
             <!-- Begin page content -->
 
 
             <div class="container">
                 <!-- row of columns -->
-
-                <br><br><br>
-
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div id="sp" style="height: 45vh;">
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6">
-                        <div id="map" style="height: 45vh;">
-                        </div>
-                    </div>
-
+                <div class="row" id="banner">
+                    <h1>Populäraste bäbisnamnen</h1>
                 </div>
-
                 <div class="row">
-                    <br><br><br>
-                    <div class="col-xs-12">
-                        <div id="pc" style="height: 30vh"></div>
+                    <div class="col-xs-3" id="control-panel">
+                        <div class="row">
+                            <button class="gender-button">Kille
+                            </button>
+                            <button class="gender-button">Tjej
+                            </button>
+                        </div>
+
+                         <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Utför!</button>
+                            </span>
+                        </div><!-- /input-group -->
+
+                        <div class="row">
+                            <button class="search-filter-button">Populäraste
+                            </button>
+                            <button class="search-filter-button">Liknande
+                            </button>
+                        </div>
+
+                        <div class="row">
+                            <h2>Top 10</h2>
+                            <p>Ett namn</p>
+                        </div>
+
+                        <!-- <div id="sp" style="height: 45vh;">
+                        </div> -->
+                    </div>
+
+                    <div class="col-xs-9" id="graph-container">
+                        <div class="row">
+                            <button class="gender-button">2004
+                            </button>
+                            <button class="gender-button">2005
+                            </button>
+                        </div>
+
+                        <div id="river" style="height: 45vh;">
+                        </div>
+
+                        <div class="row">
+                            <h2>Antal födda inom tidsperiod<h2>
+
+                            <div id="bar" style="height: 45vh;">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
