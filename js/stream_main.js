@@ -1,10 +1,19 @@
-
-
-    var n = 20, // number of layers
-        m = 200; // number of samples per layer
+    var self = this;
+    
+    var n = 10, // number of layers
+        m = 10; // number of samples per layer
 
     var data1 = stream_layers(n, m);
     var data0 = stream_layers(n, m);
+
+    //Load data
+    d3.csv("data/flickor9814.csv", function(data) {
+
+        self.data = data;
+
+ //       draw();
+    }); 
+
     var colors = d3.range(n).map(function() { return d3.interpolateRgb("#aad", "#556")(Math.random()); });
 
     var streamgraph = streamgraphChart()

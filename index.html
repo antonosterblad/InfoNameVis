@@ -31,62 +31,64 @@
         <![endif]-->
 
         <!-- row of columns -->
-        <div class="row" id="banner">
+        <div id="banner">
             <h1>Populäraste bäbisnamnen år 2004</h1>
         </div>
-        <div class="row">
-            <div id="control-panel">
-                <div class="row gender-button-container">
-                    <button class="gender-button">
-                        Kille
-                    </button>
-                    <button class="gender-button">
-                        Tjej
-                    </button>
-                </div>
-
-                 <div class="col-xs-12 input-group">
-                <input type="text" class="form-control" placeholder="Valfri...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Utför!</button>
-                    </span>
-                </div><!-- /input-group -->
-
-                <div class="col-xs-12">
-                    <button class="search-filter-button">Populäraste
-                    </button>
-                    <button class="search-filter-button">Liknande
-                    </button>
-                </div>
-
-                <div class="col-xs-12">
-                    <h2>Top 10</h2>
-                    <h3>2004</h3>
-                    <p>Ett namn</p>
-                </div>
-
-                <!-- <div id="sp" style="height: 45vh;">
-                </div> -->
+        <div id="control-panel">
+            <div class="row gender-button-container">
+                <button class="gender-button">
+                    Kille
+                </button>
+                <button class="gender-button">
+                    Tjej
+                </button>
             </div>
 
-            <!-- ALL THE GRAPHS -->
-            <div id="graph-container">
-            
-                    <button class="year-button">2004
-                    </button>
-                    <button class="year-button">2005
-                    </button>
-               
+             <div class="col-xs-12 input-group">
+                <input type="text" class="form-control" placeholder="Namn">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Utför!</button>
+                </span>
+            </div><!-- /input-group -->
 
-                <div id="stream" style="height: 45vh;">
-                </div>
-                <h2>Antal födda inom tidsperiod<h2>
-
-                <div id="bar" style="height: 45vh;">
-                </div>
-             
+            <div class="col-xs-12">
+                <button class="search-filter-button">Populäraste
+                </button>
+                <button class="search-filter-button">Liknande
+                </button>
             </div>
-        </div>           
+
+            <div class="col-xs-12">
+                <h2>Top 10</h2>
+                <h3>2004</h3>
+                <p>Ett namn</p>
+            </div>
+
+            <!-- <div id="sp" style="height: 45vh;">
+            </div> -->
+        </div>
+
+        <!-- ALL THE GRAPHS -->
+        <div id="graph-container">
+            <div class="navigation-aid-wrapper">
+                <button class="year-button">2004
+                </button>
+                <button class="year-button">2005
+                </button>
+            </div>
+
+            <!-- STREAMCHART CONTENT -->
+            <div id="stream"></div>
+
+            <div class="navigation-aid-wrapper">
+                <h2 >Antal födda inom tidsperiod</h2>
+            </div>
+
+            <!-- BARCHART CONTENT -->
+            <div id="bar"></div>
+         
+        </div>
+       
 
 
         <div id="footer">

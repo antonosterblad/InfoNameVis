@@ -2,10 +2,11 @@ function streamgraphChart() {
 
     var streamDiv = $("#stream");
     var streamWidth = streamDiv.width();
+    var streamHeight = streamDiv.height();
 
     var margin = {top: 0, right: 0, bottom: 0, left: 0},
         width = streamWidth,
-        height = 200,
+        height = streamHeight,
         transitionDuration = 1000,
         color = function() { return d3.interpolateRgb("#aad", "#556")(Math.random()); },
         eventHandlers = [],
@@ -48,7 +49,8 @@ function streamgraphChart() {
             var area = d3.svg.area()
                 .x(function(d) { return d.x * availableWidth / mx; })
                 .y0(function(d) { return availableHeight - d.y0 * availableHeight / my; })
-                .y1(function(d) { return availableHeight - (d.y + d.y0) * availableHeight / my; });
+                .y1(function(d) { return availableHeight - (d.y + d.y0) * availableHeight / my; }).
+                interpolate("monotone");
 
             layers = g.selectAll("path").data(data);
 

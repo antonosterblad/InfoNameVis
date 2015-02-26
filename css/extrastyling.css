@@ -1,32 +1,14 @@
+html, body{
+	width: 100%;
+	height: 100%;
+}
+
 h1, h2, h3, h4, p, a{
 	font-family: 'Lato', sans-serif;
 }
 
 #graph-container {
 	background-color: #EAF4EC;
-}
-
-#banner{
-	background-color: #91cf60;
-	text-align: center;
-}
-
-.gender-button {
-	width: 66px;
-	margin: 1px;
-	height: 50px;
-}
-
-.gender-button-container {
-	margin: 10px 35px;
-	display: inline-block;
-}
-
-#control-panel{
-	width: 210px;
-}
-
-#graph-container {
 	position: fixed;
 	left: 210px;
 	right: 0px;
@@ -45,17 +27,32 @@ h1, h2, h3, h4, p, a{
 	box-shadow: inset -3px 0px 8px #000000;
 }
 
-#banner {
-background-color: #D2EFBB;
-text-align: center;
-position: fixed;
-left: 210px;
-right: 0px;
-top: 0;
-height: 70px;
+#banner {	
+	background-color: #D2EFBB;
+	text-align: center;
+	position: fixed;
+	left: 210px;
+	right: 0px;
+	top: 0;
+	height: 70px;
 }
 
-html, body{
-	width: 100%;
-	height: 100%;
+.gender-button {
+	width: 66px;
+	margin: 1px;
+	height: 50px;
+}
+
+.gender-button-container {
+	margin: 10px 35px;
+	display: inline-block;
+}
+
+#stream, #bar {
+	height: 42% !important;
+}
+
+.navigation-aid-wrapper {
+	height: 8%;
+	background-color: #fff;
 }

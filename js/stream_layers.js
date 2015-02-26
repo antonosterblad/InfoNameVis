@@ -1,6 +1,7 @@
 /* Inspired by Lee Byron's test data generator. */
 function stream_layers(n, m, o) {
   if (arguments.length < 3) o = 0;
+
   function bump(a) {
     var x = 1 / (.1 + Math.random()),
         y = 2 * Math.random() - .5,
@@ -10,6 +11,7 @@ function stream_layers(n, m, o) {
       a[i] += x * Math.exp(-w * w);
     }
   }
+
   return d3.range(n).map(function() {
       var a = [], i;
       for (i = 0; i < m; i++) a[i] = o + o * Math.random();
