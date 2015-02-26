@@ -6,14 +6,6 @@
     var data1 = stream_layers(n, m);
     var data0 = stream_layers(n, m);
 
-    //Load data
-    d3.csv("data/flickor9814.csv", function(data) {
-
-        self.data = data;
-
- //       draw();
-    }); 
-
     var colors = d3.range(n).map(function() { return d3.interpolateRgb("#aad", "#556")(Math.random()); });
 
     var streamgraph = streamgraphChart()
