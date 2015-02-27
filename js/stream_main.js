@@ -1,7 +1,7 @@
     var self = this;
     
     var n = 10, // number of layers
-        m = 10; // number of samples per layer
+        m = 2014- 1998; // number of samples per layer
 
     var data1 = stream_layers(n, m);
     var data0 = stream_layers(n, m);
