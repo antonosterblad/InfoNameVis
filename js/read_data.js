@@ -4,14 +4,12 @@ var topList = new Array();
 
    //Load data
 d3.csv("data/flickor9814.csv", function(data) {
-    //console.log(data);
-    
     // data[0][2003] or data[0]["2003"]
    // console.log(data["2003"]);
     self.data = data;
-  	  sum();
+  	  //sum();
     //sum(2012);
-    //sum(2011, 2012);
+    sum(2011, 2012);
     getTopList(10);
 }); 
 
