@@ -42,10 +42,7 @@
             d.value = +d.value;
         });
         
-        //define the domain of the bar chart
-        //x.domain(data.map(function(d) { return d.tilltalsnamn; }));
-        //y.domain([0, d3.max(data, function(d) { return d.value; })]);
-        
+        //define the domain of the bar chart        
         x.domain(data.map(function(d) { return d.tilltalsnamn; }));
         y.domain([0, d3.max(data, function(d) { return d.value; })]);
         
@@ -72,15 +69,6 @@
             .attr("height", function(d) { return height - y(d.value); });
     });
 
-    //method for selecting the dot from other components
-    this.selectDot = function(value, bool){
-
-    };
-    
-    //method for selecting features of other components
-    function selFeature(value, bool){
-
-    }
 
 
 
