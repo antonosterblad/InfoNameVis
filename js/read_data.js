@@ -26,7 +26,7 @@ function sum(n,m) {
 
 	switch(arg) {
 		case 1:
-			console.log(1);
+			//console.log(1);
 			for(var i = 0; i < data.length; i++) {
 				// Check if integer
 				if(isInt(parseInt(data[i][n])) ) {
@@ -36,7 +36,7 @@ function sum(n,m) {
 	        break;
 
         case 2:
-        	console.log(2);
+        	//console.log(2);
         	for(var i = 0; i < data.length; i++) {
 
 				for( var j = n; j <= m; j++ ) {
@@ -49,7 +49,7 @@ function sum(n,m) {
         	break;
 
 		default:
-			console.log("default");
+			//console.log("default");
 			for(var i = 0; i < data.length; i++) {
 
 				for( var key in data[0] ) {
@@ -63,7 +63,7 @@ function sum(n,m) {
 
 	}
 
-	console.log(sumYear);
+	//console.log(sumYear);
 };
 
 // IS INT? FUNCTION. 
