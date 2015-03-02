@@ -33,6 +33,7 @@ $(".year-button").click(function (e) {
 	//console.log(selectedButtons);
 	showSelection();
 	updateData();
+	bar();
 
 }).hover(function (e) {
 	if(e.which === 1 && leftButtonDown) {
@@ -163,7 +164,6 @@ function updateData() {
 
 	getTopList(10);
 	getTopListFull();
-	bar();
 	console.log(topList);
 	console.log(topListFull);
 }
