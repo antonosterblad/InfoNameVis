@@ -33,7 +33,6 @@ $(".year-button").click(function (e) {
 	//console.log(selectedButtons);
 	showSelection();
 	updateData();
-	bar();
 
 }).hover(function (e) {
 	if(e.which === 1 && leftButtonDown) {
@@ -120,7 +119,6 @@ function showSelection() {
 			$(this).removeClass("selected");
 		}
 	});
-
 	setHeader();
 }
 
@@ -132,13 +130,21 @@ function setHeader() {
 	temp.sort();
 
 	if(temp.length == 0) {		
-		$("#banner h1").text( "Populäraste bäbisnamnen år 2005-2014" );
+		$("#banner h1").text( "Populäraste bäbisnamnen år 1998-2014" );
+		$(".top-list h3").text( "1998-2014" );
 
 	} else if (temp.length == 1) {
 		$("#banner h1").text( "Populäraste bäbisnamnen år " + temp[0] );
+		$(".top-list h3").text( temp[0] );
 
 	} else {
 		$("#banner h1").text( "Populäraste bäbisnamnen år " + temp[0] + "-" + temp[temp.length - 1] );
+		$(".top-list h3").text( temp[0] + "-" + temp[temp.length - 1] );
+	}
+
+	$( ".top-list p").remove();
+	for(var i = 0; i < topList.length; i++) {
+		$( ".top-list" ).append( "<p class='top-list-item'>" + topList[i].name + ", " + topList[i].total +  "</p>" );		
 	}
 }
 
@@ -164,6 +170,9 @@ function updateData() {
 
 	getTopList(10);
 	getTopListFull();
-	console.log(topList);
-	console.log(topListFull);
+	setHeader();
+	//console.log(topList);
+	//console.log(topListFull);
+	bar();
+
 }

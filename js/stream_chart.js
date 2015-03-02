@@ -17,13 +17,14 @@ function streamgraphChart() {
 
     function chart(selection) {
         selection.each(function(data) {
-
+            console.log("chart");
+            console.log(data);
             // Compute the streamgraph.
             data = streamgraph(data);
-
-            var mx = data[0].length - 1, // assumes that all layers have same # of samples & that there is at least one layer
+            var mx = 16, // assumes that all layers have same # of samples & that there is at least one layer
                 my = d3.max(data, function(d) {
                     return d3.max(d, function(d) {
+
                         return d.y0 + d.y;
                     });
                 });
