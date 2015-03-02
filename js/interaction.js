@@ -131,7 +131,7 @@ function setHeader() {
 	temp.sort();
 
 	if(temp.length == 0) {		
-		$("#banner h1").text( "Populäraste bäbisnamnen år 1998-2014" );
+		$("#banner h1").text( "Populäraste bäbisnamnen år 2005-2014" );
 
 	} else if (temp.length == 1) {
 		$("#banner h1").text( "Populäraste bäbisnamnen år " + temp[0] );
@@ -163,6 +163,7 @@ function updateData() {
 
 	getTopList(10);
 	getTopListFull();
+	bar();
 	console.log(topList);
 	console.log(topListFull);
 }

@@ -1,50 +1,39 @@
 //Bar Chart
+function bar() {
 
     var self = this; // for internal d3 functions
 
     var bcDiv = $("#bar");
 
+    //fetch data
+    var topData = topList;
+
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
         width = bcDiv.width() - margin.right - margin.left,
         height = bcDiv.height() - margin.top - margin.bottom;
 
-    var x = d3.scale.ordinal().rangeRoundBands([0, width], .5);
-
-    var y = d3.scale.linear().range([height, 0]);
+    //chart axis scales    
+    var xScale = d3.scale.ordinal().rangeRoundBands([0, width], .5);
+    var yScale = d3.scale.linear().range([0, height]);
 
     var xAxis = d3.svg.axis()
-        .scale(x)
+        .scale(xScale)
         .orient("bottom");
 
     var yAxis = d3.svg.axis()
-        .scale(y)
+        .scale(yScale)
         .orient("left");
-    
-    //initialize tooltip
-    /*var tip = d3.select("body").append("tip")
-        .attr("class", "tooltip")
-        .style("opacity", 0);*/
 
+    //define the domain of the bar chart        
+    xScale.domain(topData.map(function(d) { return d.name; }));
+    yScale.domain([0, d3.max(topData, function(d) { return d.total; })]);
+
+    //Create SVG element
     var svg = d3.select("#bar").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    //svg.call(tip);
-
-    //Load data
-    d3.csv("data/pojkarTest.csv", function(error, data) {
-        //self.data = data;
-
-        data.forEach(function(d) {
-            d.tilltalsnamn = d.tilltalsnamn;
-            d.value = +d.value;
-        });
-        
-        //define the domain of the bar chart        
-        x.domain(data.map(function(d) { return d.tilltalsnamn; }));
-        y.domain([0, d3.max(data, function(d) { return d.value; })]);
         
         // Add x axis and title.
         svg.append("g")
@@ -60,25 +49,17 @@
 
         // Add the bars.    
         svg.selectAll("bar")
-            .data(data)
+            .data(topData)
             .enter().append("rect")
             .style("fill", "steelblue")
-            .attr("x", function(d) { return x(d.tilltalsnamn); })
-            .attr("width", x.rangeBand())
-            .attr("y", function(d) { return y(d.value); })
-            .attr("height", function(d) { return height - y(d.value); });
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            .attr("x", function(d) { return xScale(d.name); })
+            .attr("width", xScale.rangeBand())
+            .attr("y", function(d) { return yScale(d.total); })
+            .attr("height", function(d) { return height - yScale(d.total); })
+            .transition()
+            .ease("elastic")
+            .duration(function (d, i) { return i*500; })
+            .delay(function (d, i) { return i*100; })
+            .attr("y", function (d, i) { return height-yScale(d.total); })
+            .attr("height", function (d) { return yScale(d.total); });
+};

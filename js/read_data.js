@@ -4,7 +4,7 @@ var topList = new Array();
 var topListFull = new Array();
 
    //Load data
-d3.csv("data/flickor9814.csv", function(data) {
+d3.csv("data/flickor0514.csv", function(data) {
     // data[0][2003] or data[0]["2003"]
    // console.log(data["2003"]);
     self.data = data;
@@ -89,7 +89,7 @@ function compare(a,b) {
 function getTopList(n) {
 	// Sort list with respect to total value
 
-    var temp = $.extend([], temp, sumYear);	
+  var temp = $.extend([], temp, sumYear);	
 
 	temp.sort(compare);
 
@@ -122,7 +122,7 @@ function getTopListFull() {
 			}
 		}
 	}
-	console.log(count);
+	//console.log(count);
 
 	// topListFull.sort(compare);
 
