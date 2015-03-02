@@ -1,6 +1,7 @@
 var self = this;
 var sumYear = new Array();
 var topList = new Array();
+var topListFull = new Array();
 
    //Load data
 d3.csv("data/flickor9814.csv", function(data) {
@@ -9,12 +10,13 @@ d3.csv("data/flickor9814.csv", function(data) {
     self.data = data;
   	  //sum();
     //sum(2012);
-    sum(2011, 2012);
-    getTopList(10);
+    //sum(2011, 2012);
+    //getTopList(10);
 }); 
 
 // Calculate the sum of all years
 function sum(n,m) {
+	sumYear = [];
 	var arg = arguments.length;
 	//console.log(arg);
 
@@ -86,11 +88,42 @@ function compare(a,b) {
 
 function getTopList(n) {
 	// Sort list with respect to total value
-	sumYear.sort(compare);
+
+    var temp = $.extend([], temp, sumYear);	
+
+	temp.sort(compare);
 
 	for(var i = 0; i < n; i++){
-		topList[i] = sumYear[i];
+		topList[i] = temp[i];
 	}
 
 	//console.log(topList);
 };
+
+function getTopListFull() {
+	var topListTemp = new Array();
+
+	// Extract all years
+	for(var i = 0; i < self.data.length; i++) {
+		for(var j = 0; j < topList.length; j++) {
+			if(self.data[i].tilltalsnamn == topList[j].name) {
+				topListTemp.push(self.data[i]);
+			}
+		}
+	}
+
+	// Sort based on the other topList
+	for(var i = 0; i < topList.length; i++) {
+		for(var j = 0; j < topListTemp.length; j++) {
+			if(topList[i].name == topListTemp[j].tilltalsnamn) {
+				topListFull[i] = topListTemp[j];
+
+				break;
+			}
+		}
+	}
+	console.log(count);
+
+	// topListFull.sort(compare);
+
+}

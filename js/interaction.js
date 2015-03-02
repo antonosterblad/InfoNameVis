@@ -8,12 +8,14 @@ $(document).mousedown(function(e){
 	}
     // Left mouse button was pressed, set flag
     if(e.which === 1) leftButtonDown = true;
-
-    showSelection();
+    
 });
 $(document).mouseup(function(e){
     // Left mouse button was released, clear flag
     if(e.which === 1) leftButtonDown = false;  
+
+	showSelection();
+	updateData();
 });
 
 $(".year-button").click(function (e) {
@@ -28,8 +30,9 @@ $(".year-button").click(function (e) {
 	} else {
 		selectedButtons.push(parseInt($(this).val()));
 	}
-	console.log(selectedButtons);
+	//console.log(selectedButtons);
 	showSelection();
+	updateData();
 
 }).hover(function (e) {
 	if(e.which === 1 && leftButtonDown) {
@@ -100,13 +103,12 @@ $(".year-button").click(function (e) {
 
 		}
 
-		console.log(selectedButtons);
+		//console.log(selectedButtons);
 	}
  
 })
 .mousemove( function() {
-	showSelection();
-  
+	showSelection();  
 });
 
 function showSelection() {
@@ -123,7 +125,6 @@ function showSelection() {
 
 function setHeader() {
 
-
     var temp = $.extend([], temp, selectedButtons);	
     // console.log(temp);
 	// var temp = selectedButtons;
@@ -138,4 +139,30 @@ function setHeader() {
 	} else {
 		$("#banner h1").text( "Populäraste bäbisnamnen år " + temp[0] + "-" + temp[temp.length - 1] );
 	}
+}
+
+function updateData() {
+	var temp = $.extend([], temp, selectedButtons);	
+	temp.sort();
+
+	if(temp.length >= 2) {
+		var first = temp[0];
+		var last = temp[temp.length - 1];
+		console.log(first + " - " + last);
+		sum(first, last);
+
+	} else if (temp.length == 1) {
+		var first = temp[0];
+		console.log(first);
+		sum(first);
+
+	} else {
+		console.log("Everything!");
+		sum();
+	}
+
+	getTopList(10);
+	getTopListFull();
+	console.log(topList);
+	console.log(topListFull);
 }
