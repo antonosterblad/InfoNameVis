@@ -8,10 +8,11 @@ d3.csv("data/flickor9814.csv", function(data) {
     // data[0][2003] or data[0]["2003"]
    // console.log(data["2003"]);
     self.data = data;
-  	  //sum();
+  	sum();
     //sum(2012);
     //sum(2011, 2012);
-    //getTopList(10);
+    getTopList(10);
+    getTopListFull();
 }); 
 
 // Calculate the sum of all years
@@ -122,7 +123,7 @@ function getTopListFull() {
 			}
 		}
 	}
-	console.log(count);
+	
 
 	// topListFull.sort(compare);
 
