@@ -1,13 +1,47 @@
     var n = 10, // number of layers
         m = 2014- 1998; // number of samples per layer
 
+    var arr = new Array();
+  //  convertData();
+
+    function convertData() {
+        arr = [];
+        for(var i in topListFull) {
+           // console.log(i);
+            arr.push(new Array());
+            
+            //arr[i] = topListFull[i].tilltalsnamn;
+          //  console.log(arr[i]);
+            var j = 0;
+            for(var key in topListFull[i]) {
+              
+                if(key != "tilltalsnamn") {
+                 //     console.log(topListFull[i][key]);
+                    arr[i].push(new Object());
+                    arr[i][j].x = j;
+                    arr[i][j].y = parseInt(topListFull[i][key]);  
+                   // arr[i][j].y1 = parseFloat(topListFull[i][key])*Math.random();  
+                     j++;         
+                } 
+                
+            }
+        }
+       // console.log(arr);
+
+        return d3.range(n).map(function() {
+            return arr;
+        });
+
+      // return arr;
+       
+    }
+
   //  var data1 = topListFull;
     //console.log(topListFull); 
     //stream_layers(n, m);
-    var data0 = topListFull;
-    //stream_layers(n, m);
+    var data0 = convertData();//stream_layers(n, m);
 
-    console.log(data0);
+   console.log(data0);
 
     // var colors = d3.range(n).map(function() { return d3.interpolateRgb("#aad", "#556")(Math.random()); });
 
@@ -28,6 +62,15 @@
                     var d = data1;
                     data1 = data0;
                     return data0 = d;
+                })
+                .call(streamgraph);
+    }
+
+    function updateStream() {
+        console.log("updateStream");
+         d3.select("#stream")
+                .data(function() {                    
+                    return convertData();
                 })
                 .call(streamgraph);
     }
