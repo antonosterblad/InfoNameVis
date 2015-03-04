@@ -4,6 +4,17 @@
     var arr = new Array();
   //  convertData();
 
+    function addDrama(i,key) {
+        var drama = 1;
+
+        if(key != "2005") {
+            var previousYear = topListFull[i][parseInt(key) - 1];
+            drama = parseFloat(topListFull[i][key])/previousYear;
+        }
+
+        return Math.pow(drama, 3);
+    }
+
     function convertData() {
         arr = [];
         for(var i in topListFull) {
@@ -19,7 +30,7 @@
                  //     console.log(topListFull[i][key]);
                     arr[i].push(new Object());
                     arr[i][j].x = j;
-                    arr[i][j].y = parseInt(topListFull[i][key]);  
+                    arr[i][j].y = parseInt(topListFull[i][key]) * addDrama(i,key);  
                    // arr[i][j].y1 = parseFloat(topListFull[i][key])*Math.random();  
                      j++;         
                 } 
@@ -50,7 +61,10 @@
         .color(function(d, i) { return colorbrewer.Set3[10][i]; }) // use same colors for both data sets
         .transitionDuration(1500)
         .on("mouseover", fade(.2))
-        .on("mouseout", fade(1));
+        .on("mouseout", fade(1))
+        .on("click", function(d, i) {
+            console.log(topListFull[i].tilltalsnamn);
+        });
 
     d3.select("#stream")
         .datum(data0)
