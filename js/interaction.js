@@ -174,5 +174,6 @@ function updateData() {
 	//console.log(topList);
 	//console.log(topListFull);
 	bar();
+	updateStream();
 
 }
