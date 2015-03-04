@@ -21,11 +21,7 @@ function bar() {
 
     var yAxis = d3.svg.axis()
         .scale(yScale)
-        .orient("left");
-
-    //Define the domain of the bar chart        
-    xScale.domain(topList.map(function(d) { return d.name; }));
-    yScale.domain([d3.max(topList, function(d) { return d.total; }),0]);    
+        .orient("left");   
 
     //Create SVG element
     var svg = d3.select("#bar").append("svg")
@@ -33,18 +29,8 @@ function bar() {
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    
-        //Add x axis and title.
-        svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
 
-        //Add y axis and title.
-        svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-        .append("text");
+    updateBar();    
 
     /* ---- TO-DO ---- */
     // This is the shit
@@ -53,13 +39,34 @@ function bar() {
         updateBar();
     });*/
 
-    updateBar();
-
     function updateBar() {
 
-        //Add the bars.
-        var bars = svg.selectAll("bar")
+        //Define the domain of the bar chart        
+        xScale.domain(topList.map(function(d) { return d.name; }));
+        yScale.domain([d3.max(topList, function(d) { return d.total; }),0]);
+
+        //Create variable bars
+        var bars = svg.selectAll(".bar")
         .data(topList, key);
+
+        //Remove existing bars
+        bars.exit().remove();
+
+        //Remove previous x-axis:
+        svg.select("xAxis").remove();
+        //Add x axis and title.
+        svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+        //Remove previous y-axis:
+        svg.select("yAxis").remove();
+        //Add y axis and title.
+        svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+        .append("text");
 
         //New data
         bars.enter().append("rect")
@@ -76,19 +83,6 @@ function bar() {
             .delay(function (d, i) { return i*100; })
             .attr("y", function (d, i) { return yScale(d.total); })
             .attr("height", function (d) { return height-yScale(d.total); });
-
-        //Remove existing bars
-        bars.exit().remove();
-
-        /*
-        //Remove previous y-axis:
-        svg.select(".yAxis").remove(); // << this line added
-        //Existing code to draw y-axis:
-        svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis)
-            .append("text");
-        */
 
         /*
         // Add the bars.    
@@ -108,5 +102,7 @@ function bar() {
             .attr("height", function (d) { return height-yScale(d.total); });
         */
     };
+
+    updateBar(); 
 
 };
