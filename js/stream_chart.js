@@ -21,6 +21,7 @@ function streamgraphChart() {
             console.log(data);
             // Compute the streamgraph.
             data = streamgraph(data);
+            console.log(data);
             var mx = 16, // assumes that all layers have same # of samples & that there is at least one layer
                 my = d3.max(data, function(d) {
                     return d3.max(d, function(d) {

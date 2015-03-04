@@ -1,13 +1,32 @@
     var n = 10, // number of layers
         m = 2014- 1998; // number of samples per layer
 
+    var arr = new Array();
+    convertData();
+    function convertData() {
+    console.log(topListFull.length);
+        for(var i = 0; i < topListFull.length; i++) {
+            console.log("arr.push");
+            arr.push(new Array());
+            
+            arr[i] = topListFull[i].tilltalsnamn;
+            console.log(arr[i]);
+            for(var key in topListFull[i]) {
+                if(key != "tilltalsnamn") {
+                    arr[i][j] = topListFull[i][key];           
+                }
+            }
+        }
+        console.log(arr);
+    }
+
   //  var data1 = topListFull;
     //console.log(topListFull); 
     //stream_layers(n, m);
-    var data0 = topListFull;
+    var data0 = arr;
     //stream_layers(n, m);
 
-    console.log(data0);
+   // console.log(data0);
 
     // var colors = d3.range(n).map(function() { return d3.interpolateRgb("#aad", "#556")(Math.random()); });
 
