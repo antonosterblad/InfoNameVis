@@ -171,8 +171,8 @@ function updateData() {
 	getTopList(10);
 	getTopListFull();
 	setHeader();
+	bar(topList);
 	//console.log(topList);
 	//console.log(topListFull);
-	bar();
 
 }

@@ -13,6 +13,7 @@ d3.csv("data/flickor0514.csv", function(data) {
     //sum(2011, 2012);
     getTopList(10);
     getTopListFull();
+    bar();
 }); 
 
 // Calculate the sum of all years
