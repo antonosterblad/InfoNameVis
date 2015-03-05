@@ -8,7 +8,7 @@ function streamgraphChart() {
         width = streamWidth,
         height = streamHeight,
         transitionDuration = 1000,
-        color = function() { return d3.interpolateRgb("#aad", "#556")(Math.random()); },
+       // color = function() { return d3.interpolateRgb("#aad", "#556")(Math.random()); },
         eventHandlers = [],
         layers = undefined,
         layersTransition = undefined;
@@ -19,7 +19,7 @@ function streamgraphChart() {
         selection.each(function(data) {
          
             // Compute the streamgraph.
-             data = streamgraph(data);
+            data = streamgraph(data);
             
             var mx = data[0].length - 1, // assumes that all layers have same # of samples & that there is at least one layer
                 my = d3.max(data, function(d) {
@@ -49,9 +49,9 @@ function streamgraphChart() {
 
             var area = d3.svg.area()
                 .x(function(d) { return d.x * availableWidth / mx; })
-                .y0(function(d) { return availableHeight - d.y0 * availableHeight / my; })
-                .y1(function(d) { return availableHeight - (d.y + d.y0) * availableHeight / my; }).
-                interpolate("monotone");
+                .y0(function(d) { return d.y0 * availableHeight / my; })
+                .y1(function(d) { return  (d.y + d.y0) * availableHeight / my; })
+                .interpolate("monotone");
 
             layers = g.selectAll("path").data(data);
 

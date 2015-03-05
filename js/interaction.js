@@ -144,8 +144,13 @@ function setHeader() {
 
 	$( ".top-list p").remove();
 	for(var i = 0; i < topList.length; i++) {
-		$( ".top-list" ).append( "<p class='top-list-item'>" + topList[i].name + ", " + topList[i].total +  "</p>" );		
+		$( ".top-list" ).append( "<p class='top-list-item'>" + topList[i].name + ", " + topList[i].total +  "</p>" );
 	}
+
+	var i = 0;
+	$(".top-list-item").each( function() {
+		$(this).css("background-color",colorbrewer.Set3[10][i++]);		
+	});
 }
 
 function updateData() {
