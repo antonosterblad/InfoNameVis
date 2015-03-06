@@ -8,16 +8,10 @@
         height = bcDiv.height() - margin.top - margin.bottom;
 
     //Chart axis scales    
-    var xScale = d3.scale.ordinal().rangeRoundBands([0, width], .5);
-    var yScale = d3.scale.linear().range([0, height]);
-
-    var xAxis = d3.svg.axis()
-        .scale(xScale)
-        .orient("bottom");
-
-    var yAxis = d3.svg.axis()
-        .scale(yScale)
-        .orient("left");
+    var xScale = d3.scale.ordinal().rangeRoundBands([0, width], .5),
+        yScale = d3.scale.linear().range([0, height]),
+        xAxis = d3.svg.axis().scale(xScale).orient("bottom"),
+        yAxis = d3.svg.axis().scale(yScale).orient("left");
 
     //Create SVG element
     var svg = d3.select("#bar").append("svg")
@@ -26,6 +20,18 @@
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .attr("class", "bars");
+
+    //Add x axis and title.
+    svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+    //Add y axis and title.
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+        .append("text");
 
 
 function updateBar() {
@@ -36,26 +42,10 @@ function updateBar() {
 
     //Add the bars.
     var bar = svg.selectAll(".bars")
-    .data(topList, key);    
+    .data(topList, key);
 
-    //Remove existing bars
-    bar.exit().remove();
-
-    //Remove previous x-axis:
-    svg.select("xAxis").remove();
-    //Add x axis and title.
-    svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
-
-    //Remove previous y-axis:
-    svg.select("yAxis").remove();
-    //Add y axis and title.
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-        .append("text");
+    // Update existing element
+    bar.attr("class", "update");    
 
     //New bar chart data
     bar.enter().append("rect")
@@ -72,5 +62,20 @@ function updateBar() {
         .delay(function (d, i) { return i*100; })
         .attr("y", function (d, i) { return yScale(d.total); })
         .attr("height", function (d) { return height-yScale(d.total); });
+
+
+    //Remove existing bars
+    bar.exit().remove();
+
+    // Update the Axis
+    var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+    var yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+    svg.selectAll("g.yScale.axis")
+        .call(yAxis)
+
+    svg.selectAll("g.xScale.axis")
+        .call(xAxis);
+
 
 };
