@@ -35,6 +35,7 @@
         <div id="banner">
             <h1>Populäraste bäbisnamnen år 2005-2014</h1>
         </div>
+
         <div id="control-panel">
             <div class="col-xs-12">
                 <h2>Filter</h2>
@@ -60,43 +61,45 @@
                 <div class="form-group">        
                     <button type="submit" class="btn btn-default">Submit</button>
                 </div>
+
+                <h2>Projekt</h2>
+                <p>Detta verktyg har utvecklats av Anton Österblad och Teodor Vik i som examinationsmoment i kursen Informationsvisualisering på Linköpings Universitet.</p>
             </div>
-            <div class="col-xs-12 top-list">
+         
+
+        </div>
+
+        <div class="content-wrapper">
+            <div class="col-xs-4 top-list">
                 <h2>Top 10</h2>
                 <h3>2005-2014</h3>
             </div>
 
-        </div>
+            <!-- ALL THE GRAPHS -->
+            <div class="col-xs-8" id="graph-container">
+                <div class="navigation-aid-wrapper">
+                    <button class="year-button" value="2005">2005</button>
+                    <button class="year-button" value="2006">2006</button>
+                    <button class="year-button" value="2007">2007</button>
+                    <button class="year-button" value="2008">2008</button>
+                    <button class="year-button" value="2009">2009</button>
+                    <button class="year-button" value="2010">2010</button>
+                    <button class="year-button" value="2011">2011</button>
+                    <button class="year-button" value="2012">2012</button>
+                    <button class="year-button" value="2013">2013</button>
+                    <button class="year-button" value="2014">2014</button>
+                </div>
 
-        <!-- ALL THE GRAPHS -->
-        <div id="graph-container">
-            <div class="navigation-aid-wrapper">
-                <button class="year-button" value="2005">2005</button>
-                <button class="year-button" value="2006">2006</button>
-                <button class="year-button" value="2007">2007</button>
-                <button class="year-button" value="2008">2008</button>
-                <button class="year-button" value="2009">2009</button>
-                <button class="year-button" value="2010">2010</button>
-                <button class="year-button" value="2011">2011</button>
-                <button class="year-button" value="2012">2012</button>
-                <button class="year-button" value="2013">2013</button>
-                <button class="year-button" value="2014">2014</button>
-            </div>
+                <!-- STREAMCHART CONTENT -->
+                <div id="stream"></div>
+<!-- 
+                <div class="navigation-aid-wrapper">
+                    <h2 >Antal födda inom tidsperiod</h2>
+                </div> -->
 
-            <!-- STREAMCHART CONTENT -->
-            <div id="stream"></div>
-
-            <div class="navigation-aid-wrapper">
-                <h2 >Antal födda inom tidsperiod</h2>
-            </div>
-
-            <!-- BARCHART CONTENT -->
-            <div id="bar"></div>
-         
-        </div>
-
-        <div id="footer">
-            <div class="container">
+                <!-- BARCHART CONTENT -->
+                <div id="bar"></div>
+             
             </div>
         </div>
 

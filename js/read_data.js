@@ -13,10 +13,10 @@ var topListFull = new Array();
     //sum(2011, 2012);
     getTopList(10);
     getTopListFull();
-<<<<<<< HEAD
+
     createBar();
 }); 
-=======
+
 
     bar();
 }); */
@@ -43,7 +43,6 @@ function loadData(girls){
 
 	updateData();
 };
->>>>>>> 535c3bc19747fec27546d707a44c9775bdef661a
 
 // Calculate the sum of all years
 function sum(n,m) {

@@ -15,66 +15,67 @@ h3 {
 	margin: 0px;
 	font-size: 13px;
 }
-
+/*
 #graph-container {
 	background-color: #EAF4EC;
 	position: fixed;
-	left: 210px;
+	left: 40px;
 	right: 0px;
 	bottom: 0px;
 	top: 70px;
+} */
+
+.content-wrapper{
+	position:fixed;
+	top: 70px;
+	bottom: 0px;
+	left: 40px;
+	right: 0px;
 }
 
 #control-panel {
 	width: 210px;
 	position: fixed;
-	left: 0;
+	left: -170px;
 	bottom: 0px;
 	top: 0px;
 	background-color: #1F1F1F;
 	color: rgb(158, 149, 149);
 	box-shadow: inset -3px 0px 8px #000000;
+	z-index: 1;
+
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+}
+
+#control-panel:hover {
+	left: 0px;
 }
 
 #banner {	
 	background-color: #D2EFBB;
 	text-align: center;
 	position: fixed;
-	left: 210px;
+	left: 30px;
 	right: 0px;
 	top: 0;
 	height: 70px;
 }
 
-.gender-button {
-	width: 66px;
-	margin: 1px;
-	height: 50px;
-}
-
-.gender-button-container {
-	margin: 10px 35px;
-	display: inline-block;
-}
-
 #stream, #bar {
-	height: 42% !important;
-}
-
-#bar {
-	padding-bottom: 5px;
+	height: 40vh;
 }
 
 .navigation-aid-wrapper {
-	height: 8%;
 	background-color: #fff;
 }
 
-.year-button {
-    width: 5.55%;
+button.year-button {
+    width: 9.44%;
     background-color: white;
 	border: 1px solid #8FB090;
-	border-radius: 2px;
 	padding: 0;
 	margin: 0;
 	height: 100%;
@@ -86,9 +87,14 @@ h3 {
 	color:black;
 }
 
+.top-list{
+	height: 100%;
+	background-color: #eeeeff;
+}
+
 .top-list-item {
     background-color: #3F3F3F;
     color: black;
-    padding: 7px;
-    margin: 3px 0px !important;
+    margin: 4px 0px !important;
+	padding: 2px 4px;
 }
