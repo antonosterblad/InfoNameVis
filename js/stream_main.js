@@ -12,7 +12,7 @@
             drama = parseFloat(topListFull[i][key])/previousYear;
         }
 
-        return Math.pow(drama, 3);
+        return Math.pow(drama, 2);
     }
 
     function convertData() {

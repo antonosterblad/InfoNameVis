@@ -4,7 +4,7 @@ var topList = new Array();
 var topListFull = new Array();
 
    //Load data
-d3.csv("data/flickor0514.csv", function(data) {
+/*d3.csv("data/flickor0514.csv", function(data) {
     // data[0][2003] or data[0]["2003"]
    // console.log(data["2003"]);
     self.data = data;
@@ -13,8 +13,37 @@ d3.csv("data/flickor0514.csv", function(data) {
     //sum(2011, 2012);
     getTopList(10);
     getTopListFull();
+<<<<<<< HEAD
     createBar();
 }); 
+=======
+
+    bar();
+}); */
+loadData(2);
+
+function loadData(girls){
+
+	var dataset;
+	if(girls == 2) {
+		dataset = "data/alla0514.csv";		
+	} else if(girls) {
+		dataset = "data/flickor0514.csv"; console.log("flickor");
+	} else {
+		dataset = "data/pojkar0514.csv";	console.log("pojkar");
+	}
+
+	d3.csv(dataset, function(data) {
+	    self.data = data;
+	    sum();
+		getTopList(10);
+		getTopListFull();
+		bar();	
+	});	
+
+	updateData();
+};
+>>>>>>> 535c3bc19747fec27546d707a44c9775bdef661a
 
 // Calculate the sum of all years
 function sum(n,m) {

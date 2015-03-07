@@ -1,6 +1,7 @@
 var leftButtonDown = false;
 var selectedButtons = new Array();
 var rightDrag = false;
+var gender = 0;
 
 $(document).mousedown(function(e){
 	if(selectedButtons.length != 1) {
@@ -123,6 +124,12 @@ function showSelection() {
 }
 
 function setHeader() {
+	var gendername;
+	if(gender) {
+		gendername = "flickor";
+	} else {
+		gendername = "pojkar";
+	}
 
     var temp = $.extend([], temp, selectedButtons);	
     // console.log(temp);
@@ -130,15 +137,15 @@ function setHeader() {
 	temp.sort();
 
 	if(temp.length == 0) {		
-		$("#banner h1").text( "Populäraste bäbisnamnen år 1998-2014" );
-		$(".top-list h3").text( "1998-2014" );
+		$("#banner h1").text( "Populäraste bäbisnamnen för " + gendername + " år 2005-2014" );
+		$(".top-list h3").text( "2005-2014" );
 
 	} else if (temp.length == 1) {
-		$("#banner h1").text( "Populäraste bäbisnamnen år " + temp[0] );
+		$("#banner h1").text( "Populäraste bäbisnamnen för " + gendername + " år " + temp[0] );
 		$(".top-list h3").text( temp[0] );
 
 	} else {
-		$("#banner h1").text( "Populäraste bäbisnamnen år " + temp[0] + "-" + temp[temp.length - 1] );
+		$("#banner h1").text( "Populäraste bäbisnamnen för " + gendername + " år " + temp[0] + "-" + temp[temp.length - 1] );
 		$(".top-list h3").text( temp[0] + "-" + temp[temp.length - 1] );
 	}
 
@@ -181,4 +188,30 @@ function updateData() {
 	updateBar(topList);
 	updateStream();
 
-}
+};
+
+function search(string) {
+	var found = new Array();
+	console.log(string.toLowerCase());
+	var j = 0;
+	for(var i = 0; i < data.length; i++) {
+		if(data[i].tilltalsnamn.toLowerCase().indexOf(string.toLowerCase()) == 0) {
+			found.push(new Object());
+			found[j].tilltalsnamn = data[i].tilltalsnamn;
+			found[j].id = i;	
+			j++;
+		}
+	}
+
+	found.sort(compareName);
+
+	return found;
+};
+
+function compareName(a, b) {
+  if (a.tilltalsnamn.length > b.tilltalsnamn.length)
+     return 1;
+  if (a.tilltalsnamn.length < b.tilltalsnamn.length)
+    return -1;
+  return 0;
+};
