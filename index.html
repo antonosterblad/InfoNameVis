@@ -36,29 +36,31 @@
             <h1>Populäraste bäbisnamnen år 2005-2014</h1>
         </div>
         <div id="control-panel">
-            <div class="row gender-button-container">
-                <button class="gender-button" value="0" onclick="loadData(0);">
-                    Kille
-                </button>
-                <button class="gender-button" value="1" onclick="loadData(1);">
-                    Tjej
-                </button>
-            </div>
-
-             <div class="col-xs-12 input-group">
-                <input type="text" class="form-control" placeholder="Namn">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Utför!</button>
-                </span>
-            </div><!-- /input-group -->
-
             <div class="col-xs-12">
-                <button class="search-filter-button">Populäraste
-                </button>
-                <button class="search-filter-button">Liknande
-                </button>
-            </div>
+                <h2>Filter</h2>
+                <div class="radio-inline">
+                    <label><input input type="radio" name="optradio" value="0" onclick="loadData(0);">Pojkar</label>
+                </div>  
+                <div class="radio-inline">
+                    <label><input input type="radio" name="optradio" value="1" onclick="loadData(1);">Flickor</label>
+                </div>  
 
+                 <div class="form-group">      
+                    <input type="text" class="form-control" id="searchstr" placeholder="Namn">
+                </div>
+                <p>Jämför sökresultat med</p>
+                <div class="radio">
+                    <label><input input type="radio" name="optradio2">Populäraste</label>
+                </div>  
+                <div class="radio">
+                    <label><input input type="radio" name="optradio2">Liknande</label>
+                </div>  
+
+
+                <div class="form-group">        
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </div>
             <div class="col-xs-12 top-list">
                 <h2>Top 10</h2>
                 <h3>2005-2014</h3>

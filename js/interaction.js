@@ -188,4 +188,30 @@ function updateData() {
 	updateBar();
 	updateStream();
 
-}
+};
+
+function search(string) {
+	var found = new Array();
+	console.log(string.toLowerCase());
+	var j = 0;
+	for(var i = 0; i < data.length; i++) {
+		if(data[i].tilltalsnamn.toLowerCase().indexOf(string.toLowerCase()) == 0) {
+			found.push(new Object());
+			found[j].tilltalsnamn = data[i].tilltalsnamn;
+			found[j].id = i;	
+			j++;
+		}
+	}
+
+	found.sort(compareName);
+
+	return found;
+};
+
+function compareName(a, b) {
+  if (a.tilltalsnamn.length > b.tilltalsnamn.length)
+     return 1;
+  if (a.tilltalsnamn.length < b.tilltalsnamn.length)
+    return -1;
+  return 0;
+};
