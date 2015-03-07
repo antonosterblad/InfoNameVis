@@ -185,7 +185,7 @@ function updateData() {
 	setHeader();
 	//console.log(topList);
 	//console.log(topListFull);
-	bar();
+	updateBar();
 	updateStream();
 
 }
