@@ -3,23 +3,6 @@ var sumYear = new Array();
 var topList = new Array();
 var topListFull = new Array();
 
-   //Load data
-/*d3.csv("data/flickor0514.csv", function(data) {
-    // data[0][2003] or data[0]["2003"]
-   // console.log(data["2003"]);
-    self.data = data;
-  	sum();
-    //sum(2012);
-    //sum(2011, 2012);
-    getTopList(10);
-    getTopListFull();
-
-    createBar();
-}); 
-
-
-    bar();
-}); */
 loadData(2);
 
 function loadData(girls){
@@ -38,7 +21,8 @@ function loadData(girls){
 	    sum();
 		getTopList(10);
 		getTopListFull();
-		bar();	
+		//updateBar(topList);
+		//updateStream();
 	});	
 
 	updateData();
