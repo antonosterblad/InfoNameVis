@@ -34,15 +34,16 @@ h3 {
 }
 
 #control-panel {
-	width: 210px;
-	position: fixed;
-	left: -170px;
-	bottom: 0px;
-	top: 0px;
-	background-color: #1F1F1F;
-	color: rgb(158, 149, 149);
-	box-shadow: inset -3px 0px 8px #000000;
-	z-index: 1;
+    width: 250px;
+    position: fixed;
+    left: -210px;
+    bottom: 0px;
+    top: 0px;
+    background-color: #1F1F1F;
+    color: #9E9595;
+    box-shadow: -3px 0px 8px #000 inset;
+    z-index: 1;
+    padding-right: 40px;
 
 	-webkit-transition: all 0.4s ease-in-out;
 	-moz-transition: all 0.4s ease-in-out;
@@ -97,4 +98,20 @@ button.year-button {
     color: black;
     margin: 4px 0px !important;
 	padding: 2px 4px;
+}
+
+.grid .tick {
+    stroke: lightgrey;
+    opacity: 0.7;
+}
+.grid path {
+      stroke-width: 0;
+}
+
+.slider.slider-horizontal .slider-track {
+    width: 110%;
+}
+
+.slider-handle {
+	opacity: 1.0;
 }

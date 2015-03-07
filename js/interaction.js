@@ -215,3 +215,5 @@ function compareName(a, b) {
     return -1;
   return 0;
 };
+
+$('.slider').slider();
