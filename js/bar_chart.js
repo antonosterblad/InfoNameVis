@@ -19,6 +19,16 @@
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    //initialize tooltip
+    var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function(d) {
+        return "<span style='color:white'>" + d.name + "</span>";
+    })
+
+    svg.call(tip);
+
     createBar();
 
 function createBar() {
@@ -41,7 +51,7 @@ function createBar() {
         .append("text");
 
     // Add the bars
-    var bar = svg.selectAll(".bars")
+    var bar = svg.selectAll(".bar")
         .data(data)
         .enter().append("g")
         .attr("class", "g")
@@ -50,12 +60,12 @@ function createBar() {
     bar.selectAll("rect")
         .data(function(d) { return d.total; })
         .enter().append("rect")
-        .attr("width", xScale.rangeBand())
-        .attr("y", function(d) { return height-yScale(d.total); })
-        .attr("height", function(d) { return yScale(d.total); })
+        .attr("width", x.rangeBand())
+        .attr("y", function(d) { return height-y(d.total); })
+        .attr("height", function(d) { return y(d.total); })
         .style("fill", function(d, i) { return colorbrewer.Set3[10][i]; });
 
-}        
+};        
 
 
 function updateBar(data2) {
@@ -79,7 +89,7 @@ function updateBar(data2) {
         .call(yAxis);   
 
     // Add the bars
-    var bar = svg.selectAll(".bars")
+    var bar = svg.selectAll(".bar")
     .data(data2);
 
     // Remove existing bars
@@ -95,7 +105,14 @@ function updateBar(data2) {
         .attr("width", x.rangeBand())
         .attr("y", function(d) { return height-y(d.total); })
         .attr("height", function(d) { return y(d.total); })
-        .attr("class", "bars");
+        .attr("class", "bar")
+        .on('mouseover', function(d) {
+            hoverBar(d.name);
+        })
+        .on('mouseout', function() {
+            svg.selectAll(".bar").style("opacity", 1.0);
+        });
+
 
     // Transition
     bar.transition().duration(function (d, i) { return i*500; })
@@ -105,4 +122,21 @@ function updateBar(data2) {
         .attr("height", function (d) { return height-y(d.total); });
 
 
+};
+
+//method for selecting the dot from other components
+this.selectBar = function(value, bool) {
+
+};
+    
+//method for selecting features of other components
+function hoverBar(value) {
+    svg.selectAll(".bar").style("opacity", function(d) {
+        if(d.name == value) {
+            return 1.0;
+        }
+        else {
+            return 0.5;
+        }
+    });
 };
