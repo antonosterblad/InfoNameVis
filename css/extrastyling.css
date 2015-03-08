@@ -56,13 +56,16 @@ h3 {
 }
 
 #banner {	
-	background-color: #D2EFBB;
 	text-align: center;
 	position: fixed;
 	left: 30px;
 	right: 0px;
 	top: 0;
 	height: 70px;
+}
+
+#bar-header {	
+	text-align: center;
 }
 
 #stream, #bar {
@@ -74,8 +77,8 @@ h3 {
 }
 
 button.year-button {
-    width: 9.44%;
-    background-color: white;
+  width: 9.44%;
+  background-color: white;
 	border: 1px solid #8FB090;
 	padding: 0;
 	margin: 0;
@@ -90,14 +93,15 @@ button.year-button {
 
 .top-list{
 	height: 100%;
-	background-color: #eeeeff;
+	/*background-color: #eeeeff;*/
 }
 
 .top-list-item {
-    background-color: #3F3F3F;
+    /*background-color: #3F3F3F;*/
+    font-size: 100%;
     color: black;
     margin: 4px 0px !important;
-	padding: 2px 4px;
+		padding: 2px 4px;
 }
 
 .grid .tick {

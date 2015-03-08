@@ -2,7 +2,7 @@
     var data = topList;
     var bcDiv = $("#bar");
 
-    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    var margin = {top: 10, right: 20, bottom: 70, left: 40},
     width = bcDiv.width() - margin.right - margin.left,
     height = bcDiv.height() - margin.top - margin.bottom;
 
@@ -27,11 +27,11 @@
         return "<span style='color:white'>" + d.name + "</span>";
     })
 
-    svg.call(tip);
+    //svg.call(tip);
 
-    createBar();
+    createChart();
 
-function createBar() {
+function createChart() {
     /* Initate the bar chart first time the application runs */
 
     // Define the domain of the bar chart        
@@ -49,22 +49,6 @@ function createBar() {
         .attr("class", "y axis")
         .call(yAxis)
         .append("text");
-
-    // Add the bars
-    var bar = svg.selectAll(".bar")
-        .data(data)
-        .enter().append("g")
-        .attr("class", "g")
-        .attr("transform", function(d) { return "translate(" + x(d.name) + ",0)"; });
-
-    bar.selectAll("rect")
-        .data(function(d) { return d.total; })
-        .enter().append("rect")
-        .attr("width", x.rangeBand())
-        .attr("y", function(d) { return height-y(d.total); })
-        .attr("height", function(d) { return y(d.total); })
-        .style("fill", function(d, i) { return colorbrewer.Set3[10][i]; });
-
 };        
 
 
@@ -92,27 +76,25 @@ function updateBar(data2) {
     var bar = svg.selectAll(".bar")
     .data(data2);
 
-    // Remove existing bars
-    bar.exit().remove();
-
-    // Update existing element
-    bar.attr("class", "update");
+    // Update existing elements
+    bar.attr("bar", "update");
 
     // New bar chart data
     bar.enter().append("rect")
+        .attr("class", "bar")
         .style("fill", function(d, i) { return colorbrewer.Set3[10][i]; })
+        svg.selectAll(".bar").attr("stroke-width", 0)
         .attr("x", function(d) { return x(d.name); })
         .attr("width", x.rangeBand())
         .attr("y", function(d) { return height-y(d.total); })
         .attr("height", function(d) { return y(d.total); })
-        .attr("class", "bar")
         .on('mouseover', function(d) {
-            hoverBar(d.name);
+            fadeBar(d.name);
         })
         .on('mouseout', function() {
             svg.selectAll(".bar").style("opacity", 1.0);
+            svg.selectAll(".bar").attr("stroke-width", 0);
         });
-
 
     // Transition
     bar.transition().duration(function (d, i) { return i*500; })
@@ -121,22 +103,40 @@ function updateBar(data2) {
         .attr("y", function (d, i) { return y(d.total); })
         .attr("height", function (d) { return height-y(d.total); });
 
+    bar.enter().append("text")
+        .text(function(d) {
+            return d.total;
+        })
+        .attr("x", function(d, i) {
+            return i * (bcDiv.width() / data2.length);
+        })
+        .attr("y", function(d){ return y(d) + data2.height/2; } )
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "11px")
+        .attr("fill", "black")
+        .attr("text-anchor", "middle");
 
-};
-
-//method for selecting the dot from other components
-this.selectBar = function(value, bool) {
+    // Remove existing bars
+    bar.exit().remove();
 
 };
     
 //method for selecting features of other components
-function hoverBar(value) {
-    svg.selectAll(".bar").style("opacity", function(d) {
+function fadeBar(value) {
+    svg.selectAll(".bar").transition(1000).delay(50).style("opacity", function(d) {
         if(d.name == value) {
             return 1.0;
         }
         else {
-            return 0.5;
+            return 0.3;
+        }
+    });
+    svg.selectAll(".bar").attr("stroke-width", function(d) {
+        if(d.name == value) {
+            return 1;
+        }
+        else {
+            return 0;
         }
     });
 };

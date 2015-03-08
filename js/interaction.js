@@ -123,6 +123,10 @@ function showSelection() {
 	setHeader();
 }
 
+function setGender(val) {
+	gender = val;
+};
+
 function setHeader() {
 	var gendername;
 	if(gender) {
@@ -139,24 +143,29 @@ function setHeader() {
 	if(temp.length == 0) {		
 		$("#banner h1").text( "Populäraste bäbisnamnen för " + gendername + " år 2005-2014" );
 		$(".top-list h3").text( "2005-2014" );
+		$("#bar-header h2").text( "Totalt antal namngivna år 2005-2014" );
 
 	} else if (temp.length == 1) {
 		$("#banner h1").text( "Populäraste bäbisnamnen för " + gendername + " år " + temp[0] );
 		$(".top-list h3").text( temp[0] );
+		$("#bar-header h2").text( "Totalt antal namngivna år " + temp[0] );
 
 	} else {
 		$("#banner h1").text( "Populäraste bäbisnamnen för " + gendername + " år " + temp[0] + "-" + temp[temp.length - 1] );
 		$(".top-list h3").text( temp[0] + "-" + temp[temp.length - 1] );
+		$("#bar-header h2").text( "Totalt antal namngivna år " + temp[0] + "-" + temp[temp.length - 1] );
 	}
 
 	$( ".top-list p").remove();
 	for(var i = 0; i < topList.length; i++) {
-		$( ".top-list" ).append( "<p class='top-list-item'>" + topList[i].name + ", " + topList[i].total +  "</p>" );
+		var j = i+1;
+		//$( ".top-list" ).append( "<p class='top-list-item'>" + topList[i].name + ", " + topList[i].total +  "</p>" );
+		$( ".top-list" ).append( "<p class='top-list-item'>" + j + ". " + topList[i].name + "</p>" );
 	}
 
 	var i = 0;
 	$(".top-list-item").each( function() {
-		$(this).css("background-color",colorbrewer.Set3[10][i++]);		
+		$(this).css("background-color",colorbrewer.Set3[10][i++]);
 	});
 }
 

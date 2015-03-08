@@ -5,12 +5,12 @@ var topListFull = new Array();
 
 loadData(2);
 
-function loadData(girls){
+function loadData(gender){
 
 	var dataset;
-	if(girls == 2) {
+	if(gender == 2) {
 		dataset = "data/alla0514.csv";		
-	} else if(girls) {
+	} else if(gender) {
 		dataset = "data/flickor0514.csv"; console.log("flickor");
 	} else {
 		dataset = "data/pojkar0514.csv";	console.log("pojkar");
@@ -25,6 +25,7 @@ function loadData(girls){
 		//updateStream();
 	});	
 
+	setGender(gender);
 	updateData();
 };
 
