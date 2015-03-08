@@ -15,11 +15,14 @@ function streamgraphChart() {
 
     var streamgraph =  d3.layout.stack().offset("wiggle");
 
-    function make_x_axis() {        
+    var x = d3.scale.linear()
+    .domain([0, 10])
+    .range([0, streamWidth]);
+
+    function make_x_axis() {     
         return d3.svg.axis()
         .scale(x)
-        .orient("bottom")
-        .ticks(4)
+        .orient("bottom").ticks(9);
     }
 
     

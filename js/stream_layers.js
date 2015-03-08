@@ -16,7 +16,7 @@ function stream_layers(n, m, o) {
       var a = [], i;
       for (i = 0; i < m; i++) a[i] = o + o * Math.random();
       for (i = 0; i < 5; i++) bump(a);
-        console.log(a.map(stream_index));
+      //  console.log(a.map(stream_index));
       return a.map(stream_index);
     });
 }

@@ -115,3 +115,10 @@ button.year-button {
 .slider-handle {
 	opacity: 1.0;
 }
+
+#menu-icon{
+    position: absolute !important;
+    right: -32px;
+    top: 8px;
+    font-size: 30px;
+}

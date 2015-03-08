@@ -13,11 +13,12 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- Bootstrap core CSS -->
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="css/bootstrap.css">
+       <!--  <link rel="stylesheet" href="css/bootstrap.css"> -->
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/colorbrewer.css">
         <link rel="stylesheet" href="css/main.css">
-
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <!--modules css-->
         <link rel="stylesheet" href="css/pc.css">
         <link rel="stylesheet" href="css/sp.css">
@@ -39,6 +40,7 @@
 
         <div id="control-panel">
             <div class="col-xs-12">
+                <span id="menu-icon" class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                 <h2>Filter</h2>
                 <div class="radio-inline">
                     <label><input input type="radio" name="optradio" value="0" onclick="loadData(0);">Pojkar</label>
@@ -57,7 +59,6 @@
                 <div class="radio">
                     <label><input input type="radio" name="optradio2">Liknande</label>
                 </div>  
-
 
                 <div class="form-group">        
                     <button type="submit" class="btn btn-default">Submit</button>
@@ -83,6 +84,7 @@
             <!-- ALL THE GRAPHS -->
             <div class="col-xs-8" id="graph-container">
                 <div class="navigation-aid-wrapper">
+                    <button class="year-button" value="2004">2004</button>
                     <button class="year-button" value="2005">2005</button>
                     <button class="year-button" value="2006">2006</button>
                     <button class="year-button" value="2007">2007</button>
