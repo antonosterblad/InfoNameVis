@@ -11,7 +11,7 @@ function stream_layers(n, m, o) {
       a[i] += x * Math.exp(-w * w);
     }
   }
-
+  console.log("hlall");
   return d3.range(n).map(function() {
       var a = [], i;
       for (i = 0; i < m; i++) a[i] = o + o * Math.random();
@@ -22,5 +22,6 @@ function stream_layers(n, m, o) {
 }
 
 function stream_index(d, i) {
+  console.log(d);
   return {x: i, y: Math.max(0, d)};
 }

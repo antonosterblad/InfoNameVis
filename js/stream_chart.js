@@ -31,15 +31,17 @@ function streamgraphChart() {
          
             // Compute the streamgraph.
             data = streamgraph(data);
+       
             
             var mx = data[0].length - 1, // assumes that all layers have same # of samples & that there is at least one layer
                 my = d3.max(data, function(d) {
                     return d3.max(d, function(d) {
-
+                       
+                         // console.log(d);
                         return d.y0 + d.y;
                     });
                 });
-
+            console.log(my);
             // Select the svg element, if it exists.
             var svg = d3.select(this).selectAll("svg").data([data]);
           
@@ -66,10 +68,16 @@ function streamgraphChart() {
                     .tickFormat("")
                 );
 
-            var area = d3.svg.area()
+            var area = d3.svg.area().defined(function(d) { 
+                    
+                    return !isNaN(d.y0); })
                 .x(function(d) { return d.x * availableWidth / mx; })
-                .y0(function(d) { return d.y0 * availableHeight / my; })
-                .y1(function(d) { return  (d.y + d.y0) * availableHeight / my; })
+                .y0(function(d) { 
+                    return d.y0 * availableHeight / my; 
+                })
+                .y1(function(d) { 
+                    return  (d.y + d.y0) * availableHeight / my; 
+                })
                 ; //.interpolate("monotone");
 
             layers = g.selectAll("path").data(data);

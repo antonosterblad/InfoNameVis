@@ -7,7 +7,7 @@
     function addDrama(i,key) {
         var drama = 1;
 
-        if(key != "2005") {
+        if(key != "2004") {
             var previousYear = topListFull[i][parseInt(key) - 1];
             drama = parseFloat(topListFull[i][key])/previousYear;
         }
@@ -15,28 +15,36 @@
         return Math.pow(drama, 2);
     }
 
-    function convertData() {
+    function convertData(topList1) {
+
         arr = [];
-        for(var i in topListFull) {
-           // console.log(i);
+        for(var i in topList1) {
             arr.push(new Array());
             
             //arr[i] = topListFull[i].tilltalsnamn;
           //  console.log(arr[i]);
+
             var j = 0;
-            for(var key in topListFull[i]) {
-              
+            for(var key in data[topList1[i].id]) {
+               // console.log(key);
                 if(key != "tilltalsnamn") {
-                 //     console.log(topListFull[i][key]);
                     arr[i].push(new Object());
                     arr[i][j].x = j;
-                    arr[i][j].y = parseInt(topListFull[i][key]) * addDrama(i,key);  
-                   // arr[i][j].y1 = parseFloat(topListFull[i][key])*Math.random();  
-                     j++;         
+                   // console.log(data[topList[i].id][key]);
+
+                    if(!isNaN(parseInt(data[topList1[i].id][key]))) {
+                        arr[i][j].y = parseInt(data[topList1[i].id][key]) * addDrama(i,key);  
+                    } else {
+                        arr[i][j].y = 0;
+                    }
+                 
+                    // arr[i][j].y1 = parseFloat(topListFull[i][key])*Math.random();  
+                    j++;         
                 } 
                 
             }
         }
+        
        // console.log(arr);
 
         return d3.range(n).map(function() {
@@ -52,13 +60,13 @@
     //stream_layers(n, m);
     var data0 = convertData();//stream_layers(n, m);
 
-   console.log(data0);
+   //console.log(data0);
 
     // var colors = d3.range(n).map(function() { return d3.interpolateRgb("#aad", "#556")(Math.random()); });
 
     var streamgraph = streamgraphChart()
         .margin({top: 10, right: 0, bottom: 10, left: 0})
-        .color(function(d, i) { return colorbrewer.Set3[10][i]; }) // use same colors for both data sets
+        .color(function(d, i) { return colorbrewer.Set3[12][i]; }) // use same colors for both data sets
         .transitionDuration(1500)
         .on("mouseover", fade(.2))
         .on("mouseout", fade(1))
@@ -66,7 +74,6 @@
             console.log(topListFull[i].tilltalsnamn);
         });
 
-    
     d3.select("#stream")
         .datum(data0)
         .call(streamgraph);
@@ -81,11 +88,11 @@
                 .call(streamgraph);
     }
 
-    function updateStream() {
+    function updateStream(topList) {
         console.log("updateStream");
          d3.select("#stream")
                 .data(function() {                    
-                    return convertData();
+                    return convertData(topList);
                 })
                 .call(streamgraph);
     }

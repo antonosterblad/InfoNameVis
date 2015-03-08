@@ -3,7 +3,7 @@ var sumYear = new Array();
 var topList = new Array();
 var topListFull = new Array();
 
-loadData(2);
+loadData(1);
 
 function loadData(girls){
 
@@ -11,15 +11,15 @@ function loadData(girls){
 	if(girls == 2) {
 		dataset = "data/alla0514.csv";		
 	} else if(girls) {
-		dataset = "data/flickor0514.csv"; console.log("flickor");
+		dataset = "data/flickor0414.csv"; console.log("flickor");
 	} else {
-		dataset = "data/pojkar0514.csv";	console.log("pojkar");
+		dataset = "data/pojkar0414.csv";	console.log("pojkar");
 	}
 
 	d3.csv(dataset, function(data) {
 	    self.data = data;
 	    sum();
-		getTopList(10);
+		getTopList(8);
 		getTopListFull();
 		//updateBar(topList);
 		//updateStream();
@@ -38,6 +38,7 @@ function sum(n,m) {
 		sumYear.push(new Object());
 		sumYear[i].name = data[i].tilltalsnamn;
 		sumYear[i].total = 0;
+		sumYear[i].id = i;
 	}
 
 	switch(arg) {
@@ -82,6 +83,52 @@ function sum(n,m) {
 	//console.log(sumYear);
 };
 
+// Calculate the sum of all years
+function sumTopList(n,m) {
+	var arg = arguments.length;
+	//console.log(arg);
+
+	for(var i = 0; i < topList.length; i++) {
+		topList[i].total = 0;
+	}
+
+	switch(arg) {
+		case 1:
+			//console.log(1);
+			for(var i = 0; i < topList.length; i++) {
+				// Check if integer
+				if(isInt(parseInt(data[topList[i].id][n])) ) {
+	          		topList[i].total += parseInt(data[topList[i].id][n]);
+	          	}			      
+	        }
+	        break;
+
+        case 2:
+        	for(var i = 0; i < topList.length; i++) {
+
+				for( var j = n; j <= m; j++ ) {
+					// Check if integer
+					if(isInt(parseInt(data[topList[i].id][j])) ) {
+		          		topList[i].total += parseInt(data[topList[i].id][j]);
+					}       
+		    	}			      
+	        }
+        	break;
+
+		default:
+			for(var i = 0; i < topList.length; i++) {
+
+				for( var key in data[0] ) {
+					// Check if integer
+					if(isInt(parseInt(data[topList[i].id][key])) ) {
+		          		topList[i].total += parseInt(data[topList[i].id][key]);
+					}       
+		    	}
+			}
+			break;
+	}
+};
+
 // IS INT? FUNCTION. 
 // http://stackoverflow.com/questions/14636536/how-to-check-if-a-variable-is-an-integer-in-javascript
 function isInt(value) {
@@ -118,12 +165,8 @@ function getTopListFull() {
 	var topListTemp = new Array();
 
 	// Extract all years
-	for(var i = 0; i < self.data.length; i++) {
-		for(var j = 0; j < topList.length; j++) {
-			if(self.data[i].tilltalsnamn == topList[j].name) {
-				topListTemp.push(self.data[i]);
-			}
-		}
+	for(var i = 0; i < topList.length; i++) {
+		topListTemp.push(self.data[topList[i].id]);
 	}
 
 	// Sort based on the other topList
@@ -136,7 +179,4 @@ function getTopListFull() {
 			}
 		}
 	}
-
-	// topListFull.sort(compare);
-
 }

@@ -167,32 +167,31 @@ function updateData() {
 	if(temp.length >= 2) {
 		var first = temp[0];
 		var last = temp[temp.length - 1];
-		console.log(first + " - " + last);
-		sum(first, last);
+		//console.log(first + " - " + last);
+		sumTopList(first, last);
 
 	} else if (temp.length == 1) {
 		var first = temp[0];
-		console.log(first);
-		sum(first);
+		//console.log(first);
+		sumTopList(first);
 
 	} else {
-		console.log("Everything!");
-		sum();
+		//console.log("Everything!");
+		sumTopList();
 	}
 
-	getTopList(10);
+	//getTopList(topListFull.length);
 	getTopListFull();
 	setHeader();
 	//console.log(topList);
 	//console.log(topListFull);
 	updateBar(topList);
-	updateStream();
+	updateStream(topList);
 
 };
 
 function search(string) {
 	var found = new Array();
-	console.log(string.toLowerCase());
 	var j = 0;
 	for(var i = 0; i < data.length; i++) {
 		if(data[i].tilltalsnamn.toLowerCase().indexOf(string.toLowerCase()) == 0) {
@@ -217,3 +216,23 @@ function compareName(a, b) {
 };
 
 $('.slider').slider();
+
+function getSearchResults() {
+	var string = $("#searchstr").val();
+	var results = search(string);
+
+	var temp = sumYear[results[0].id];
+	
+	var add = true;
+	for(var key in topList) {
+		if(topList[key].tilltalsnamn == temp.name) {
+			add = false;
+		}
+	}
+
+	if(add) {
+		topList.push(temp);
+	}
+
+	updateData();
+}

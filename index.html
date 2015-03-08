@@ -61,12 +61,12 @@
                 </div>  
 
                 <div class="form-group">        
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default" onclick="getSearchResults()">Sök</button>
                 </div>
 
                 <h3>Drama</h3>
                 <input class="slider" value="" data-slider-min="1" data-slider-max="4" data-slider-step="1" data-slider-value="-14" data-slider-selection="after"data-slider-tooltip="hide">
-                <p>Genom att dra i slidern väljer du hur mycket värdena ska påverkas av förändringen från tidigare värden i streamgrafen</p>
+                <p>Genom att dra i slidern väljer du hur mycket värdena ska påverkas av förändringen från tidigare år i streamgrafen.</p>
 
                 <h2>Projekt</h2>
                 <p>Detta verktyg har utvecklats av Anton Österblad och Teodor Vik i som examinationsmoment i kursen Informationsvisualisering på Linköpings Universitet.</p>
@@ -83,19 +83,41 @@
 
             <!-- ALL THE GRAPHS -->
             <div class="col-xs-8" id="graph-container">
-                <div class="navigation-aid-wrapper">
-                    <button class="year-button" value="2004">2004</button>
-                    <button class="year-button" value="2005">2005</button>
-                    <button class="year-button" value="2006">2006</button>
-                    <button class="year-button" value="2007">2007</button>
-                    <button class="year-button" value="2008">2008</button>
-                    <button class="year-button" value="2009">2009</button>
-                    <button class="year-button" value="2010">2010</button>
-                    <button class="year-button" value="2011">2011</button>
-                    <button class="year-button" value="2012">2012</button>
-                    <button class="year-button" value="2013">2013</button>
-                    <button class="year-button" value="2014">2014</button>
-                </div>
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default year-button" value="2004">2004</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default year-button" value="2005">2005</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default year-button" value="2006">2006</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default year-button" value="2007">2007</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default year-button" value="2008">2008</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default year-button" value="2009">2009</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default year-button" value="2010">2010</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default year-button" value="2011">2011</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default year-button" value="2012">2012</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default year-button" value="2013">2013</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default year-button" value="2014">2014</button>
+                    </div>
+                </div>  
 
                 <!-- STREAMCHART CONTENT -->
                 <div id="stream"></div>
