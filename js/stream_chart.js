@@ -15,6 +15,14 @@ function streamgraphChart() {
 
     var streamgraph =  d3.layout.stack().offset("wiggle");
 
+    function make_x_axis() {        
+        return d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .ticks(4)
+    }
+
+    
     function chart(selection) {
         selection.each(function(data) {
          
@@ -31,7 +39,7 @@ function streamgraphChart() {
 
             // Select the svg element, if it exists.
             var svg = d3.select(this).selectAll("svg").data([data]);
-
+          
             // Otherwise, create the skeletal chart.
             var gEnter = svg.enter().append("svg").append("g");
 
@@ -47,11 +55,19 @@ function streamgraphChart() {
             var availableWidth = width - margin.left - margin.right,
                 availableHeight = height - margin.top - margin.bottom;
 
+            svg.append("g")         
+                .attr("class", "grid")
+                .attr("transform", "translate(0," + height + ")")
+                .call(make_x_axis()
+                    .tickSize(-height, 0, 0)
+                    .tickFormat("")
+                );
+
             var area = d3.svg.area()
                 .x(function(d) { return d.x * availableWidth / mx; })
                 .y0(function(d) { return d.y0 * availableHeight / my; })
                 .y1(function(d) { return  (d.y + d.y0) * availableHeight / my; })
-                .interpolate("monotone");
+                ; //.interpolate("monotone");
 
             layers = g.selectAll("path").data(data);
 

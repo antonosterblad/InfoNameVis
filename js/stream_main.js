@@ -66,6 +66,7 @@
             console.log(topListFull[i].tilltalsnamn);
         });
 
+    
     d3.select("#stream")
         .datum(data0)
         .call(streamgraph);

@@ -23,6 +23,7 @@
         <link rel="stylesheet" href="css/sp.css">
         <link rel="stylesheet" href="css/map.css">
         <link rel="stylesheet" href="css/bar.css">
+        <link rel="stylesheet" href="js/slider/css/slider.css">
         <link rel="stylesheet" href="css/extrastyling.css">
 
     </head>
@@ -61,6 +62,10 @@
                 <div class="form-group">        
                     <button type="submit" class="btn btn-default">Submit</button>
                 </div>
+
+                <h3>Drama</h3>
+                <input class="slider" value="" data-slider-min="1" data-slider-max="4" data-slider-step="1" data-slider-value="-14" data-slider-selection="after"data-slider-tooltip="hide">
+                <p>Genom att dra i slidern väljer du hur mycket värdena ska påverkas av förändringen från tidigare värden i streamgrafen</p>
 
                 <h2>Projekt</h2>
                 <p>Detta verktyg har utvecklats av Anton Österblad och Teodor Vik i som examinationsmoment i kursen Informationsvisualisering på Linköpings Universitet.</p>
@@ -112,6 +117,7 @@
         <script src="js/vendor/topojson.v1.min.js"></script>
         <script src="js/vendor/underscore-min.js"></script>
         <script src="js/vendor/colorbrewer.js"></script>
+        <script src="js/slider/js/bootstrap-slider.js"></script>
         <script src="js/read_data.js"></script>
         <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
