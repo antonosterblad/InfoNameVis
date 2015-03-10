@@ -40,23 +40,17 @@
         <div id="control-panel">
             <div class="col-xs-12">
                 <h2>Filter</h2>
-
-                 <div class="cc-selector">
-                    <input id="visa" type="radio" name="credit-card" value="visa" onclick="loadData(0);"/>
-                    <label class="drinkcard-cc visa" for="visa"></label>
-                    <input id="mastercard" type="radio" name="credit-card" value="mastercard" onclick="loadData(1);"/>
-                    <label class="drinkcard-cc mastercard"for="mastercard"></label>
+                
+                <div class="gender-radio">
+                    <div class="radio-inline">
+                        <label><input input type="radio" style="display: none;" name="optradio" value="0" onclick="loadData(0);"><img id="gender" src="./img/male.png"></label>
+                    </div>  
+                    <div class="radio-inline">
+                        <label><input input type="radio" style="display: none;" name="optradio" value="1" onclick="loadData(1);"><img id="gender" src="./img/female.png"></label>
+                    </div>
                 </div>
 
-                <!--
-                <div class="radio-inline">
-                    <label><input input type="radio" name="optradio" value="0" onclick="loadData(0);">Pojkar</label>
-                </div>  
-                <div class="radio-inline">
-                    <label><input input type="radio" name="optradio" value="1" onclick="loadData(1);">Flickor</label>
-                </div>  -->
-
-                 <div class="form-group">      
+                <div class="form-group">      
                     <input type="text" class="form-control" id="searchstr" placeholder="Namn">
                 </div>
                 <p>Jämför sökresultat med</p>
@@ -106,10 +100,6 @@
 
                 <!-- STREAMCHART CONTENT -->
                 <div id="stream"></div>
-<!-- 
-                <div class="navigation-aid-wrapper">
-                    <h2 >Antal födda inom tidsperiod</h2>
-                </div> -->
 
                 <div id="bar-header">
                     <h2>Totalt antal namngivna år 2005-2014</h2>

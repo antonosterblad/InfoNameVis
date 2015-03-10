@@ -19,16 +19,6 @@
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    //initialize tooltip
-    var tip = d3.tip()
-        .attr('class', 'd3-tip')
-        .offset([-10, 0])
-        .html(function(d) {
-        return "<span style='color:white'>" + d.name + "</span>";
-    })
-
-    //svg.call(tip);
-
     createChart();
 
 function createChart() {
@@ -92,7 +82,6 @@ function updateBar(data2) {
             fadeBar(d.name);
         })
         .on('mouseout', function() {
-            svg.selectAll(".bar").style("opacity", 1.0);
             svg.selectAll(".bar").attr("stroke-width", 0);
         });
 
@@ -123,14 +112,6 @@ function updateBar(data2) {
     
 //method for selecting features of other components
 function fadeBar(value) {
-    svg.selectAll(".bar").transition(1000).delay(50).style("opacity", function(d) {
-        if(d.name == value) {
-            return 1.0;
-        }
-        else {
-            return 0.3;
-        }
-    });
     svg.selectAll(".bar").attr("stroke-width", function(d) {
         if(d.name == value) {
             return 1;
