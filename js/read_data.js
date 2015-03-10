@@ -5,12 +5,15 @@ var topListFull = new Array();
 
 loadData(1);
 
-function loadData(girls){
+function loadData(gender){
 
 	var dataset;
-	if(girls == 2) {
+	/*if(gender == 2) {
 		dataset = "data/alla0514.csv";		
-	} else if(girls) {
+
+	} else
+	*/
+	if(gender) {
 		dataset = "data/flickor0414.csv"; console.log("flickor");
 	} else {
 		dataset = "data/pojkar0414.csv";	console.log("pojkar");
@@ -25,6 +28,7 @@ function loadData(girls){
 		//updateStream();
 	});	
 
+	setGender(gender);
 	updateData();
 };
 
@@ -127,6 +131,9 @@ function sumTopList(n,m) {
 			}
 			break;
 	}
+
+	console.log(topList);
+	sortTopList();
 };
 
 // IS INT? FUNCTION. 
@@ -160,6 +167,16 @@ function getTopList(n) {
 
 	//console.log(topList);
 };
+
+function sortTopList() {
+	var temp = $.extend([], temp, topList);	
+
+	temp.sort(compare);
+
+	for(var key in topList){
+		topList[key] = temp[key];
+	}
+}
 
 function getTopListFull() {
 	var topListTemp = new Array();

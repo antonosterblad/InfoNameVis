@@ -4,9 +4,6 @@ var rightDrag = false;
 var gender = 0;
 
 $(document).mousedown(function(e){
-	if(selectedButtons.length != 1) {
-		selectedButtons = [];
-	}
     // Left mouse button was pressed, set flag
     if(e.which === 1) leftButtonDown = true;
     
@@ -15,21 +12,20 @@ $(document).mouseup(function(e){
     // Left mouse button was released, clear flag
     if(e.which === 1) leftButtonDown = false;  
 
-	showSelection();
-	updateData();
 });
 
 $(".year-button").click(function (e) {
 	//selectedButtons = [];
-	if(selectedButtons.length == 1) {
+	if(selectedButtons.length != 1) {
+		selectedButtons = [];		
+		selectedButtons.push(parseInt($(this).val()));
+	} else if(selectedButtons.length == 1) {
 		if(selectedButtons[0] != parseInt($(this).val())) {			
 			selectedButtons = [];
 			selectedButtons.push(parseInt($(this).val()));
 		} else {
 			selectedButtons = [];
 		}
-	} else {
-		selectedButtons.push(parseInt($(this).val()));
 	}
 	//console.log(selectedButtons);
 	showSelection();
@@ -110,7 +106,12 @@ $(".year-button").click(function (e) {
 })
 .mousemove( function() {
 	showSelection();  
+})
+.mouseup( function() {
+	showSelection();
+	updateData();	
 });
+
 
 function showSelection() {
 	$(".year-button").each( function() {
@@ -120,8 +121,11 @@ function showSelection() {
 			$(this).removeClass("selected");
 		}
 	});
-	setHeader();
 }
+
+function setGender(val) {
+	gender = val;
+};
 
 function setHeader() {
 	var gendername;
@@ -139,28 +143,36 @@ function setHeader() {
 	if(temp.length == 0) {		
 		$("#banner h1").text( "Populäraste bäbisnamnen för " + gendername + " år 2005-2014" );
 		$(".top-list h3").text( "2005-2014" );
+		$("#bar-header h2").text( "Totalt antal namngivna år 2005-2014" );
 
 	} else if (temp.length == 1) {
 		$("#banner h1").text( "Populäraste bäbisnamnen för " + gendername + " år " + temp[0] );
 		$(".top-list h3").text( temp[0] );
+		$("#bar-header h2").text( "Totalt antal namngivna år " + temp[0] );
 
 	} else {
 		$("#banner h1").text( "Populäraste bäbisnamnen för " + gendername + " år " + temp[0] + "-" + temp[temp.length - 1] );
 		$(".top-list h3").text( temp[0] + "-" + temp[temp.length - 1] );
+		$("#bar-header h2").text( "Totalt antal namngivna år " + temp[0] + "-" + temp[temp.length - 1] );
 	}
 
-	$( ".top-list p").remove();
+	console.log("SetHeader");
+	$( ".top-list button").remove();
 	for(var i = 0; i < topList.length; i++) {
-		$( ".top-list" ).append( "<p class='top-list-item'>" + topList[i].name + ", " + topList[i].total +  "</p>" );
+		var j = i+1;
+		//$( ".top-list" ).append( "<p class='top-list-item'>" + topList[i].name + ", " + topList[i].total +  "</p>" );
+		$( ".top-list" ).append( "<button class='top-list-item' onclick='removeFromTopList(" + topList[i].id + ")'>" + j + ". " + topList[i].name + "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button>" );
 	}
 
 	var i = 0;
 	$(".top-list-item").each( function() {
-		$(this).css("background-color",colorbrewer.Set3[10][i++]);		
+		$(this).css("background-color",colorbrewer.Set3[10][i++]);
 	});
 }
 
 function updateData() {
+	setHeader();
+
 	var temp = $.extend([], temp, selectedButtons);	
 	temp.sort();
 
@@ -234,5 +246,16 @@ function getSearchResults() {
 		topList.push(temp);
 	}
 
+	updateData();
+};
+
+function removeFromTopList(id) {
+	for(var key in topList) {
+		if(topList[key].id == id) {
+			//topList[key] = [];
+			topList.splice(key,1);
+		} 
+	}
+//	console.log(topList);
 	updateData();
 }

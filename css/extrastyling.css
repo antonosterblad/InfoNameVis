@@ -27,7 +27,7 @@ h3 {
 
 .content-wrapper{
 	position:fixed;
-	top: 70px;
+	top: 0px;
 	bottom: 0px;
 	left: 40px;
 	right: 0px;
@@ -59,16 +59,6 @@ h3 {
 	transform: rotate(90deg);
 }
 
-#banner {	
-	background-color: #D2EFBB;
-	text-align: center;
-	position: fixed;
-	left: 30px;
-	right: 0px;
-	top: 0;
-	height: 70px;
-}
-
 #stream, #bar {
 	height: 42vh;
 }
@@ -94,14 +84,38 @@ button.year-button {
 
 .top-list{
 	height: 100%;
-	background-color: #eeeeff;
+	/*background-color: #eeeeff;*/
+}
+
+.top-list ul {
+    padding: 0;
 }
 
 .top-list-item {
-    background-color: #3F3F3F;
+    /*background-color: #3F3F3F;*/
+	border: 1px solid white;
+    font-size: 100%;
     color: black;
     margin: 4px 0px !important;
 	padding: 2px 4px;
+	list-style-type: none;
+	width: 100%;
+	text-align: left;
+}
+
+.top-list-item:hover {
+	border: 1px solid black;
+}
+
+.glyphicon-remove{
+	float: right;
+    font-size: 15px;
+    margin: 1px;
+    visibility: hidden;
+}
+
+.top-list-item:hover .glyphicon-remove{
+	visibility:visible;
 }
 
 .grid .tick {
@@ -131,4 +145,8 @@ button.year-button {
 	-moz-transition: all 0.4s ease-in-out;
 	-o-transition: all 0.4s ease-in-out;
 	transition: all 0.4s ease-in-out;
+}
+
+.no-padding{
+	padding: 0;
 }
