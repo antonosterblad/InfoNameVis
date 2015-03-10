@@ -64,7 +64,17 @@
         .on("mouseover", focusStream(1))
         .on("mouseout", focusStream(0))
         .on("click", function(d, i) {
-            console.log(topListFull[i].tilltalsnamn);
+            if(topList.length == 1) {
+                getHistory(1);
+            } else {
+                var temp2 = [];
+                temp2 = $.extend([], temp2, topList[i]);
+
+                topList = [];
+                topList.push(temp2);
+
+                updateData();
+            }
         });
 
     d3.select("#stream")

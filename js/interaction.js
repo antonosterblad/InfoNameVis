@@ -5,6 +5,8 @@ var gender = 1;
 var historyList = new Array();
 
 $(window).load(function () {
+	drama = 0;
+	document.getElementById("myRange").value = drama;
 	updateData();
 });
 
@@ -236,8 +238,6 @@ function compareName(a, b) {
   return 0;
 };
 
-$('.slider').slider();
-
 function getSearchResults() {
 	var string = $("#searchstr").val();
 	var results = search(string);
@@ -326,7 +326,8 @@ function inHistory(tempHistory) {
 		return false;
 	} else {
 		for(var key in historyList[0].topList) {
-			
+			//console.log(key);
+			//console.log(tempHistory.topList[key]);
 			for(var object in historyList[0].topList[key]) {
 				if(tempHistory.topList[key][object] != historyList[0].topList[key][object]) {
 					return false;
