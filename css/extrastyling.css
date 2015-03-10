@@ -46,6 +46,7 @@ h3 {
 	bottom: 0px;
 	left: 40px;
 	right: 0px;
+	overflow-y: auto;
 }
 
 #control-panel {
@@ -122,6 +123,22 @@ button.year-button {
 	border: 1px solid black;
 }
 
+.history-item {
+    /*background-color: #3F3F3F;*/
+	border: 1px solid #efefef;
+    font-size: 100%;
+    color: black;
+    margin: 4px 0px !important;
+	padding: 2px 4px;
+	list-style-type: none;
+	width: 100%;
+	text-align: left;
+}
+
+.history-item:hover {
+	border: 1px solid black;
+}
+
 .glyphicon-remove{
 	float: right;
     font-size: 15px;
@@ -151,7 +168,7 @@ button.year-button {
 
 #menu-icon{
     position: absolute !important;
-    right: -32px;
+   	right: -35px;
     top: 8px;
     font-size: 30px;
 
@@ -164,4 +181,16 @@ button.year-button {
 
 .no-padding{
 	padding: 0;
+}
+
+.history1 {
+    margin-bottom: 25px;
+}
+
+.border-line {
+    border-right: 1px solid rgb(48, 48, 48);
+    top: 0px;
+    bottom: 0;
+    position: absolute;
+    width: 211px;
 }
