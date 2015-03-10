@@ -49,32 +49,20 @@
                 
             }
         }
-        
-       // console.log(arr);
 
         return d3.range(n).map(function() {
             return arr;
         });
-
-      // return arr;
-       
     }
 
-  //  var data1 = topListFull;
-    //console.log(topListFull); 
-    //stream_layers(n, m);
     var data0 = convertData();//stream_layers(n, m);
-
-   //console.log(data0);
-
-    // var colors = d3.range(n).map(function() { return d3.interpolateRgb("#aad", "#556")(Math.random()); });
 
     var streamgraph = streamgraphChart()
         .margin({top: 10, right: 0, bottom: 10, left: 0})
         .color(function(d, i) { return colorbrewer.Set3[12][i]; }) // use same colors for both data sets
         .transitionDuration(1500)
-        .on("mouseover", fade(.2))
-        .on("mouseout", fade(1))
+        .on("mouseover", focusStream(1))
+        .on("mouseout", focusStream(0))
         .on("click", function(d, i) {
             console.log(topListFull[i].tilltalsnamn);
         });
@@ -101,13 +89,14 @@
                 .call(streamgraph);
     }
 
-    function fade(opacity) {
+    function focusStream(strokeWidth) {
         return function(g, i) {
             streamgraph.layers()
                 .filter(function(h, j) {
-                    return j != i;
+                    return j == i;
                 })
-                .transition(1000)
-                  .style("opacity", opacity);
+                .transition(100)
+                .attr("stroke", "black")
+                .attr("stroke-width", strokeWidth);
         }
     }

@@ -66,10 +66,14 @@ function updateBar(data2) {
     var bar = svg.selectAll(".bar")
     .data(data2);
 
-    // Update existing elements
-    bar.attr("bar", "update");
+    var text = svg.selectAll(".txt")
+    .data(data2);
 
-    // New bar chart data
+    /*var startVal = funcion(d) {
+        d.total;
+    };*/
+
+    // Append new bar chart data
     bar.enter().append("rect")
         .attr("class", "bar")
         .style("fill", function(d, i) { return colorbrewer.Set3[10][i]; })
@@ -79,41 +83,57 @@ function updateBar(data2) {
         .attr("y", function(d) { return height-y(d.total); })
         .attr("height", function(d) { return y(d.total); })
         .on('mouseover', function(d) {
-            fadeBar(d.name);
+            fadeBar(d.id);
         })
         .on('mouseout', function() {
             svg.selectAll(".bar").attr("stroke-width", 0);
         });
 
-    // Transition
-    bar.transition().duration(function (d, i) { return i*500; })
+    // Bar transition
+    bar.transition().duration(function (d, i) { return i*700; })
         .ease("elastic")
         .delay(function (d, i) { return i*100; })
         .attr("y", function (d, i) { return y(d.total); })
         .attr("height", function (d) { return height-y(d.total); });
 
-    bar.enter().append("text")
+    // Append text to bars, displaying total
+    text.enter().append("text")
+        .attr("class", "txt")
+        //.attr("transform", "translate(0," + height + ")")
+        //.attr("x", function(d) { return x(d.name) + 24; })
+        //.attr("y", function(d) { return height-y(d.total); })
+        .attr("dy", "2em")
+        .attr("dx", "2em")
+        .attr("font-size", "12px")
+        .attr("font-weight", "bold")
+        .attr("fill", "#2a2a2a")
+        .attr("text-anchor", "middle");
+
+    // Text transition
+    text.transition().duration(function (d, i) { return i*700; })
+        .ease("elastic")
+        .delay(function (d, i) { return i*100; })
+        .attr("x", function(d) { return x(d.name); })
+        .attr("y", function (d, i) { return y(d.total); })
+        .attr("height", function (d) { return height-y(d.total); })
         .text(function(d) {
             return d.total;
-        })
-        .attr("x", function(d, i) {
-            return i * (bcDiv.width() / data2.length);
-        })
-        .attr("y", function(d){ return y(d) + data2.height/2; } )
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "11px")
-        .attr("fill", "black")
-        .attr("text-anchor", "middle");
+        });
 
     // Remove existing bars
     bar.exit().remove();
+    text.exit().remove();
+
+    // Update existing elements
+    bar.attr("bar", "update");
+    bar.attr("text", "update");
 
 };
     
 //method for selecting features of other components
 function fadeBar(value) {
     svg.selectAll(".bar").attr("stroke-width", function(d) {
-        if(d.name == value) {
+        if(d.id == value) {
             return 1;
         }
         else {
