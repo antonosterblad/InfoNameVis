@@ -122,6 +122,18 @@ button.year-button {
 	border: 1px solid black;
 }
 
+.history-item {
+    /*background-color: #3F3F3F;*/
+	border: 1px solid #efefef;
+    font-size: 100%;
+    color: black;
+    margin: 4px 0px !important;
+	padding: 2px 4px;
+	list-style-type: none;
+	width: 100%;
+	text-align: left;
+}
+
 .glyphicon-remove{
 	float: right;
     font-size: 15px;

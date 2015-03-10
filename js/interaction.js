@@ -1,7 +1,8 @@
 var leftButtonDown = false;
 var selectedButtons = new Array();
 var rightDrag = false;
-var gender = 0;
+var gender = 0;	
+var historyList = new Array();
 
 $(window).load(function () {
 	updateData();
@@ -141,15 +142,16 @@ function setHeader() {
 		gendername = "pojkar";
 	}
 
-    var temp = $.extend([], temp, selectedButtons);	
+    var temp = [];
+    temp = $.extend([], temp, selectedButtons);	
     // console.log(temp);
 	// var temp = selectedButtons;
 	temp.sort();
 
 	if(temp.length == 0) {		
-		$("#banner h1").text( "Populäraste bäbisnamnen för " + gendername + " år 2005-2014" );
+		$("#banner h1").text( "Populäraste bäbisnamnen för " + gendername + " år 2004-2014" );
 		$(".top-list h3").text( "2005-2014" );
-		$("#bar-header h2").text( "Totalt antal namngivna år 2005-2014" );
+		$("#bar-header h2").text( "Totalt antal namngivna år 2004-2014" );
 
 	} else if (temp.length == 1) {
 		$("#banner h1").text( "Populäraste bäbisnamnen för " + gendername + " år " + temp[0] );
@@ -204,6 +206,8 @@ function updateData() {
 	//console.log(topListFull);
 	updateBar(topList);
 	updateStream(topList);
+
+	addHistory();
 
 };
 
@@ -272,40 +276,79 @@ function updateDrama(i) {
 
 /***************************************************/
 /****************** HISTORY ************************/
-/***************************************************
-var history = new Array();
+/***************************************************/
 function addHistory() {
-	// Spara selectedButtons
-	history.push(new Object());
-	history[history.length].years = selectedButtons;
+	// Spara selectedButtons och topList
+	var tempHistory = new Object();
+	tempHistory.years = $.extend([], tempHistory.years, selectedButtons);
+	tempHistory.topList  = $.extend([], tempHistory.topList, topList);
 
-	console.log(selectedButtons);
+	if(!inHistory(tempHistory)) {
+		historyList.unshift(tempHistory);
+	}		
 
-/*
-	for(var i in topList1) {
-	    arr.push(new Array());
-	    
-	    //arr[i] = topListFull[i].tilltalsnamn;
-	  //  console.log(arr[i]);
+	if(historyList.length > 5) {
+		historyList.pop();
+	}
 
-	    var j = 0;
-	    for(var key in data[topList1[i].id]) {
-	       // console.log(key);
-	        if(key != "tilltalsnamn") {
-	            arr[i].push(new Object());
-	            arr[i][j].x = j;
-	           // console.log(data[topList[i].id][key]);
+	updateHistory();
+}
 
-	            if(!isNaN(parseInt(data[topList1[i].id][key]))) {
-	                arr[i][j].y = parseInt(data[topList1[i].id][key]) * addDrama(i,key);  
-	            } else {
-	                arr[i][j].y = 0;
-	            }
-	         
-	            // arr[i][j].y1 = parseFloat(topListFull[i][key])*Math.random();  
-	            j++;         
-	        } 
-	        
-	    }
+function updateHistory() {
+	$( ".history1 button").remove();
+	
+	for(var i = 0; i < historyList.length; i++) {
 
-}*/
+		// Extract the years 
+		var temp = [];
+		temp = $.extend([], temp, historyList[i].years);	
+		temp.sort();
+		var years;
+		if(temp.length == 0) {		
+			years = "2005-2014";
+
+		} else if (temp.length == 1) {
+			years = temp[0];
+
+		} else {
+			years = temp[0] + "-" + temp[temp.length - 1];
+		}
+
+		var top = historyList[i].topList.length;
+
+		//$( ".top-list" ).append( "<p class='top-list-item'>" + topList[i].name + ", " + topList[i].total +  "</p>" );
+		$( ".history1" ).append( "<button class='history-item' onclick='getHistory(" + i + ")'>Topp " + top + ", " + years  + "</button>" );
+	}
+}
+
+function inHistory(tempHistory) {
+	if(historyList.length == 0) {
+		return false;
+	} else {
+		for(var key in historyList[0].topList) {
+			
+			for(var object in historyList[0].topList[key]) {
+				if(tempHistory.topList[key][object] != historyList[0].topList[key][object]) {
+					return false;
+				}
+			}
+		}
+	}
+
+	return true; 
+}
+
+function getHistory(id) {
+	var tempYears = [];
+	tempYears = $.extend([], tempYears, historyList[id].years);	
+	selectedButtons = [];
+	selectedButtons = $.extend([], selectedButtons, tempYears);	
+
+	var tempTempList = [];
+	tempTempList = $.extend([], tempTempList, historyList[id].topList);	
+	topList = [];
+	topList = $.extend([], topList, tempTempList);	
+
+	showSelection();
+	updateData();
+}
