@@ -188,24 +188,18 @@ function updateData() {
 	if(temp.length >= 2) {
 		var first = temp[0];
 		var last = temp[temp.length - 1];
-		//console.log(first + " - " + last);
 		sumTopList(first, last);
 
 	} else if (temp.length == 1) {
 		var first = temp[0];
-		//console.log(first);
 		sumTopList(first);
 
 	} else {
-		//console.log("Everything!");
 		sumTopList();
 	}
 
-	//getTopList(topListFull.length);
 	getTopListFull();
 	setHeader();
-	//console.log(topList);
-	//console.log(topListFull);
 	updateBar(topList);
 	updateStream(topList);
 
@@ -273,6 +267,21 @@ function updateDrama(i) {
 	drama = i;
 	updateStream(topList);
 }
+
+/* ---- GENDER BUTTONS ---- */
+
+function genderClick(n) {
+	loadData(n);
+	if(n==0) {
+		document.getElementById("male").src="./img/male.png";
+		document.getElementById("female").src="./img/female_gray.png";
+	}
+	else {
+		document.getElementById("male").src="./img/male_gray.png";
+		document.getElementById("female").src="./img/female.png";
+	}
+
+};
 
 /***************************************************/
 /****************** HISTORY ************************/
@@ -353,3 +362,4 @@ function getHistory(id) {
 	showSelection();
 	updateData();
 }
+
