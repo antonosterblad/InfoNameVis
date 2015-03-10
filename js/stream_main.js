@@ -2,21 +2,26 @@
         m = 2014- 1998; // number of samples per layer
 
     var arr = new Array();
+    var drama = 1;
   //  convertData();
 
     function addDrama(i,key) {
-        var drama = 1;
+        
+        if(drama != 0) {
+            var val = 1;
+            if(key != "2004") {
+                var previousYear = topListFull[i][parseInt(key) - 1];
+                val = parseFloat(topListFull[i][key])/previousYear;
+            }
 
-        if(key != "2004") {
-            var previousYear = topListFull[i][parseInt(key) - 1];
-            drama = parseFloat(topListFull[i][key])/previousYear;
+            return Math.pow(val, drama);
+        } else {
+            return 1;
         }
-
-        return Math.pow(drama, 2);
+       
     }
 
     function convertData(topList1) {
-
         arr = [];
         for(var i in topList1) {
             arr.push(new Array());
@@ -89,7 +94,6 @@
     }
 
     function updateStream(topList) {
-        console.log("updateStream");
          d3.select("#stream")
                 .data(function() {                    
                     return convertData(topList);

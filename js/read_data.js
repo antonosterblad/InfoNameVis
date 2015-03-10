@@ -132,7 +132,6 @@ function sumTopList(n,m) {
 			break;
 	}
 
-	console.log(topList);
 	sortTopList();
 };
 

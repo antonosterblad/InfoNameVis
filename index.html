@@ -62,7 +62,7 @@
                 </div>
 
                 <h3>Drama</h3>
-                <input class="slider" value="" data-slider-min="1" data-slider-max="4" data-slider-step="1" data-slider-value="-14" data-slider-selection="after"data-slider-tooltip="hide">
+                <input type="range" id="myRange" value="90" max="4" min="0" oninput="updateDrama(this.value)">
                 <p>Genom att dra i slidern väljer du hur mycket värdena ska påverkas av förändringen från tidigare år i streamgrafen.</p>
 
                 <h2>Info</h2>
@@ -73,9 +73,14 @@
         </div>
 
         <div class="content-wrapper">
-            <div class="col-xs-3 top-list">
-                <h2>Topplistan</h2>
-                <h3>2005-2014</h3>
+            <div class="col-xs-3">
+                <div class="top-list">
+                    <h2>Topplistan</h2>
+                    <h3>2005-2014</h3>
+                </div>
+                <div class="history">
+                    <h2>Historik</h2>
+                </div>
             </div>
 
             <!-- ALL THE GRAPHS -->

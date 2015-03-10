@@ -41,7 +41,7 @@ function streamgraphChart() {
                         return d.y0 + d.y;
                     });
                 });
-            console.log(my);
+                
             // Select the svg element, if it exists.
             var svg = d3.select(this).selectAll("svg").data([data]);
           
