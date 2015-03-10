@@ -1,7 +1,7 @@
 var leftButtonDown = false;
 var selectedButtons = new Array();
 var rightDrag = false;
-var gender = 0;	
+var gender = 1;	
 var historyList = new Array();
 
 $(window).load(function () {

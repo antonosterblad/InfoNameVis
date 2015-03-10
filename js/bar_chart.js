@@ -50,6 +50,8 @@ function updateBar(data2) {
     x.domain(data2.map(function(d) { return d.name; }));
     y.domain([d3.max(data2, function(d) { return d.total; }),0]);
 
+    var barWidth = width/data2.length;
+
     var tran = d3.select("#bar").transition();
 
     // Change x-axis label
@@ -81,13 +83,15 @@ function updateBar(data2) {
         .attr("x", function(d) { return x(d.name); })
         .attr("width", x.rangeBand())
         .attr("y", function(d) { return height-y(d.total); })
-        .attr("height", function(d) { return y(d.total); })
+        .attr("height", function(d) { return y(d.total); });
+        /*
         .on('mouseover', function(d) {
             fadeBar(d.id);
         })
         .on('mouseout', function() {
             svg.selectAll(".bar").attr("stroke-width", 0);
         });
+*/
 
     // Bar transition
     bar.transition().duration(function (d, i) { return i*700; })
@@ -99,21 +103,18 @@ function updateBar(data2) {
     // Append text to bars, displaying total
     text.enter().append("text")
         .attr("class", "txt")
-        //.attr("transform", "translate(0," + height + ")")
-        //.attr("x", function(d) { return x(d.name) + 24; })
-        //.attr("y", function(d) { return height-y(d.total); })
         .attr("dy", "2em")
-        .attr("dx", "2em")
+        //.attr("dx", "2em")
         .attr("font-size", "12px")
         .attr("font-weight", "bold")
         .attr("fill", "#2a2a2a")
-        .attr("text-anchor", "middle");
+        .attr("text-anchor", "center");
 
     // Text transition
     text.transition().duration(function (d, i) { return i*700; })
         .ease("elastic")
         .delay(function (d, i) { return i*100; })
-        .attr("x", function(d) { return x(d.name); })
+        .attr("x", function(d) { return x(d.name) + barWidth/6.5; })
         .attr("y", function (d, i) { return y(d.total); })
         .attr("height", function (d) { return height-y(d.total); })
         .text(function(d) {
