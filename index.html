@@ -38,7 +38,7 @@
         <div id="control-panel">
             <div class="col-xs-12 border-line">
                 <span id="menu-icon" class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                <h2>Filter</h2>
+                <h2>Inställningar</h2>
                 
                 <div class="gender-radio">
                     <div class="radio-inline">
@@ -47,21 +47,6 @@
                     <div class="radio-inline">
                         <label><input input type="radio" style="display: none;" name="optradio" value="1" onclick="genderClick(1);"><img id="female" src="./img/female.png"></label>
                     </div>
-                </div>
-
-                <div class="form-group">      
-                    <input type="text" class="form-control" id="searchstr" placeholder="Namn">
-                </div>
-                <!-- <p>Jämför sökresultat med</p>
-                <div class="radio">
-                    <label><input input type="radio" name="optradio2">Populäraste</label>
-                </div>  
-                <div class="radio">
-                    <label><input input type="radio" name="optradio2">Liknande</label>
-                </div>  
-                -->
-                <div class="form-group">        
-                    <button type="submit" class="btn btn-default" onclick="getSearchResults()">Sök</button>
                 </div>
 
                 <h3>Drama</h3>
@@ -81,6 +66,22 @@
                     <h2>Topplistan</h2>
                     <h3>2005-2014</h3>
                 </div>
+                <!--    
+                <div class="form-group">      
+                    <input type="text" class="form-control" id="searchstr" placeholder="Namn">
+                </div>
+                
+                <div class="form-group">        
+                    <button type="submit" class="btn btn-default" onclick="getSearchResults()">Sök</button>
+                </div>
+                -->
+                <div class="input-group srch">
+                  <input type="text" class="form-control" id="searchstr" placeholder="Lägg till">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default" type="button" onclick="getSearchResults()">Sök</button>
+                  </span>
+                </div><!-- /input-group -->
+
                 <div class="history1">
                     <h2>Historik</h2>
                 </div>

@@ -50,6 +50,7 @@ h3 {
     box-shadow: -3px 0px 8px #000 inset;
     z-index: 1;
     padding-right: 40px;
+    z-index: 10;
 
 	-webkit-transition: all 0.4s ease-in-out;
 	-moz-transition: all 0.4s ease-in-out;
@@ -183,4 +184,19 @@ button.year-button {
     bottom: 0;
     position: absolute;
     width: 211px;
+}
+
+#searchstr {
+    border: 1px solid #7A7A7A;
+    border-radius: 0;
+}
+
+.srch .btn {
+    background-color: #BFED65;
+    border-radius: 0;
+    border: 1px solid #7A7A7A;
+}
+
+.srch{
+	margin-top: 2px;
 }
