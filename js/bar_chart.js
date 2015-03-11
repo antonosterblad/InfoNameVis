@@ -83,15 +83,27 @@ function updateBar(data2) {
         .attr("x", function(d) { return x(d.name); })
         .attr("width", x.rangeBand())
         .attr("y", function(d) { return height-y(d.total); })
-        .attr("height", function(d) { return y(d.total); });
-        /*
+        .attr("height", function(d) { return y(d.total); })
+        .on("click", function(d, i) {
+            if(topList.length == 1) {
+                getHistory(1);
+            } else {
+                var temp2 = [];
+                temp2 = $.extend([], temp2, topList[i]);
+
+                topList = [];
+                topList.push(temp2);
+
+                updateData();
+            }
+        })
         .on('mouseover', function(d) {
             fadeBar(d.id);
         })
         .on('mouseout', function() {
             svg.selectAll(".bar").attr("stroke-width", 0);
         });
-*/
+
 
     // Bar transition
     bar.transition().duration(function (d, i) { return i*700; })
@@ -114,7 +126,7 @@ function updateBar(data2) {
     text.transition().duration(function (d, i) { return i*700; })
         .ease("elastic")
         .delay(function (d, i) { return i*100; })
-        .attr("x", function(d) { return x(d.name) + barWidth/6.5; })
+        .attr("x", function(d) { return x(d.name) + barWidth/8; })
         .attr("y", function (d, i) { return y(d.total); })
         .attr("height", function (d) { return height-y(d.total); })
         .text(function(d) {
