@@ -11,7 +11,11 @@
             var val = 1;
             if(key != "2004") {
                 var previousYear = topListFull[i][parseInt(key) - 1];
-                val = parseFloat(topListFull[i][key])/previousYear;
+                if(!isNaN(previousYear)) {
+                    val = parseFloat(topListFull[i][key])/previousYear;
+                } else {
+                    return 1;
+                }
             }
 
             return Math.pow(val, drama);
